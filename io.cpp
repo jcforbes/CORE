@@ -1,4 +1,4 @@
-#include "io.h"
+#include "io.h" 
 int filename_gen(char *f_txt, char*f_distr, char*f_mass, char*f_star, char*f_Ek, char*cp, char*filefrag, char*filecoag)
 {
 	int i;
@@ -7,7 +7,7 @@ int filename_gen(char *f_txt, char*f_distr, char*f_mass, char*f_star, char*f_Ek,
 //f_txt = "data130130";
 //scanf("%s", f_txt);
 	end2 = clock();
-    strcpy(f_distr, f_txt);
+  strcpy(f_distr, f_txt);
 	strcpy(f_mass, f_txt);
 	strcpy(f_star, f_txt);
 	strcpy(cp,f_txt);
@@ -39,32 +39,33 @@ int filename_gen(char *f_txt, char*f_distr, char*f_mass, char*f_star, char*f_Ek,
 	strcat(cp, "-cp.txt");
 	strcat(filefrag, "-frag.txt");
 	strcat(filecoag, "-coag.txt");
-	return 1;
+  printf("outputfiles will be %s %s %s %s %s %s %s %s\n",f_txt,f_distr,f_mass,f_star,f_Ek,cp,filefrag,filecoag);
+	return 0;
 }
 
 
 int print_paras(FILE *fp, double back_mass, double TimeContinue, double total_mass_core)
 {
-	float al = alpha, be = beta, q_be = q_beta, sf = SF_rate * myr, g1 = Gauss1, g2 = Gauss2, fif = fifa;
+	//float al = alpha, be = beta, q_be = q_beta, sf = SF_rate * myr, g1 = Gauss1, g2 = Gauss2, fif = fifa;
 	float BEmass = mBE, rb = Rb/pc, bm = (double)back_mass/Msolar, timestep = Timestep / yr, eva = Evap_rate*100*kyr,drho = Drho, rhoc1=rhob*Drho*1e16;
 	if(TimeContinue)
 	{
 		fprintf(fp,"this continues file %s\ninitial time is: %fmyr\n", name, TimeContinue/myr);
 	}
-	fprintf(fp, "bin: %d\nalpha: %f\nbeta: %f\nSF_rate: %f /myr\nGaussian sigma1: %f\nGaussian sigema2: %f\nfilling factor: %f\n",bin, al, be, sf, g1, g2, (double)total_mass_core/back_mass/drho);
+	fprintf(fp, "bin: %d\nalpha: %f\nbeta: %f\nSF_rate: %f /myr\nGaussian sigma1: %f\nGaussian sigema2: %f\nfilling factor: %f\n",bin, alpha, beta, SF_rate*myr, Gauss1, Gauss2, (double)total_mass_core/back_mass/drho);
 	fprintf(fp, "Rb: %f pc\nBackground mass: %f Msolar\ntimestep: %f yr\nevaporation rate: %f%% per kyr\nrhoc: %fe-16\nDensity contrast: %f\n", rb, bm, timestep, eva, rhoc1, drho);
 	fprintf(fp, "v_m index: %f\n", v_m);
 	fprintf(fp, "Bonnor-Ebert mass: %f Msolar\n", BEmass/Msolar);
-	fprintf(fp, "dn/dq = q^q_beta, q_beta=%f\n", q_be);
+	fprintf(fp, "dn/dq = q^q_beta, q_beta=%f\n", q_beta);
 	fprintf(fp, "\ncondensation kappa=%f\n", kappa);
 	fprintf(fp, "\nvelocity dispersion=%f\n", vc);
-	return 1;
+	return 0;
 }
 
 int readdata(double *mytime, double *TimeContinue, int *ff, int *ff2)
 {
-	int i, j;
-	char y[25], z[25];
+	int i;
+//	char y[25], z[25];
 	FILE *fpdata;
 	printf("please input the number of the check point file:\n");
 	name = (char*)malloc(sizeof(char)*30);
@@ -89,7 +90,7 @@ int readdata(double *mytime, double *TimeContinue, int *ff, int *ff2)
 	}
 	fscanf(fpdata, "%d\n%d", ff, ff2);
 	fclose(fpdata);
-	return 1;
+	return 0;
 }
 
 

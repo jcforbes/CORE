@@ -10,6 +10,8 @@
 #include "observable.h"
 //initial values:
 //#define Backmassinsolar (4*Pi*rhoc*pow(Rb,3)/(3*Msolar*Drho))
+#define Totalmass_core0 (Tmass_core0solar*Msolar)
+#define Rhob           (rhoc/Drho)
 #define Back_mass       (Backmassinsolar*Msolar)
 #define Rb              (pow(Back_mass*3/(4*Pi*Rhob),1.0/3.0))
 #define fifa            (Totalmass_core0/Backmassinsolar)
@@ -27,8 +29,8 @@
 #define Frag_rate       1.0			//in frag_rate_gen();
 #define Evap_rate       ((7e-3)/kyr)     //calculated according to energy conservation; try /kyr and /yr both;
 //outdated !! #define cn_ratio        0.8              /****condensation to nucleation ratio***/
-#define Gauss1          1                /****sigma for sf_rate_gen()*****/
-#define Gauss2          20                /****sigma for frag_rate_gen()****/
+#define Gauss1          1.                /****sigma for sf_rate_gen()*****/
+#define Gauss2          20.                /****sigma for frag_rate_gen()****/
 
 
 /***************external variables*******************/
