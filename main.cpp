@@ -182,10 +182,11 @@ int initialize(double *mytime, double *TimeContinue, int *ff, int*ff2)
 	}
 	n_star[0] = 0;
 //interaction:
-    printf("Use the default initial settings? y/n:\n");
+//    printf("Use the default initial settings? y/n:\n");
 //	char flag = 'n';
-	flag = getchar();
-	if (flag != 'y')
+//	flag = getchar();
+  flag = 'y';
+  if (flag != 'y')
 	{
 		readdata(mytime, TimeContinue, ff, ff2);
 		n_star[0] = 0;/// just for follow 0513-11-cp.txt
