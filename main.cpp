@@ -11,7 +11,7 @@
 
 static int update();    
 static int initialize(double *time, double *TimeContinue, int *ff, int *ff2);
-int main()
+int main(arg)
 {
 	start = clock();
 	int    i = 0, j = 0, k = 0;
