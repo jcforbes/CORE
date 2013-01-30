@@ -11,9 +11,26 @@
 
 static int update();    
 static int initialize(double *time, double *TimeContinue, int *ff, int *ff2);
-int main(arg)
+int main(int argc, char *argv[])
 {
-	start = clock();
+  char f_txt[25];
+  if (argc<2){
+    printf("USAGE: %s <data> [<><>]\n",argv[0]);
+    exit(1);
+  }
+  else{
+    switch (argc)
+    {
+      case 2:
+        strcpy(f_txt,argv[1]);
+        break;
+      default:
+        printf("not implement yet\n");
+        exit(1);
+    }
+  }
+  
+  start = clock();
 	int    i = 0, j = 0, k = 0;
 	double mytime = 0, TimeContinue = 0, time1;
 	int ff = 0, ff2 = 0;
@@ -21,9 +38,10 @@ int main(arg)
 	double result[15][100], result_star[15][100], Ek_evo[15][100], frag[15][100], coag[15][100];  //result[0] stores the initial distribution; frag[] & coag[] store the separate contributions;
 
     /***************initialize*************/
-    initialize(&mytime, &TimeContinue, &ff, &ff2);
+	printf("initialize...\n");
+  initialize(&mytime, &TimeContinue, &ff, &ff2);
 	time1 = (double)mytime/myr;
-	if(TimeContinue==0)
+  if(TimeContinue==0)
 	{
 		for(i = 0; i<100; i++)
 		{
@@ -39,8 +57,9 @@ int main(arg)
 	}
 	/**********************************/
 
+	printf("openfile...,ftxt=%s\n",f_txt);
 	/************open file****************/
-	char f_txt[25],f_distr[25], f_mass[25], f_star[25], cp[25], f_Ek[25], filefrag[25], filecoag[25];
+	char f_distr[25], f_mass[25], f_star[25], cp[25], f_Ek[25], filefrag[25], filecoag[25];
 	FILE *fp, *fp1, *fpfrag, *fpcoag;
 	filename_gen(f_txt, f_distr, f_mass, f_star, f_Ek, cp, filefrag, filecoag);
 	fp = fopen(f_txt,"w");
@@ -50,6 +69,7 @@ int main(arg)
 	fprintf(fp1, "%f\t%f\t%f\t%f\t%f\t%f\t%f\n", time1, star_mass/Msolar, total_mass_core/Msolar, ghost_mass/Msolar, (rhob-Rhob)/Rhob, total_mass/Msolar, totEk/pow(10,40));
 	/******************************/
 
+	printf("begin iteration...\n");
 	/**************iteration**************/
 	do
 	{
@@ -106,6 +126,7 @@ int main(arg)
 	/**********************************/
 
 	finish = clock();
+	printf("finalize...\n");
 	finalize(mytime, fp, cp, ff, ff2);
 	dataoutput2(result, result_star, Ek_evo, countcolumn, f_distr, f_star, f_Ek, countcolumncf, filefrag, filecoag, frag, coag, TimeContinue); 
 
@@ -132,7 +153,7 @@ double *r_gen(double *m, double *dens)
 
 double *dens_gen(double *m)
 {
-	double *dens, temp;
+	double *dens;
 	dens = (double *)malloc(sizeof(double) * 100) ;
 	int i;
 	for(i = 0; i<100; i++)
@@ -146,7 +167,6 @@ double *dens_gen(double *m)
 int initialize(double *mytime, double *TimeContinue, int *ff, int*ff2)
 {
 	int i, j;
-	int init = 10;
 	double a = 1.07897;//a=exp((log(100)-log(0.05))/2)=m[i+1]/m[i];
 	double A;
 	char flag;

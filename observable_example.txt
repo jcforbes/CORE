@@ -1,0 +1,57 @@
+#save the default parameters 
+#initial core v~m^0.1
+v_m	= -0.2
+#Bonner Ebert mass 
+#remember to change function frag_rate_gen and sf_rate_gen when change mBE!!!!
+mBE = 2*Msolar 
+#
+Backmassinsolar = 1e3
+#
+Tmass_core0solar = 350.0
+#velocity dispersion of cores.m/s
+#//(2.0e3)   //before 0209-05(3e3)          
+vc = 1e3 
+#thermal velocity of molecules in background
+#before 0209-05(4e3)         
+v0 = 0.8e3   
+#density of the core (kg/m^3)
+# (3.187e-17)   
+rhoc = 3e-17
+# density contrast
+# 7?
+# for realistic, 0.01/Drho=0.0006; for concentrated, just keep the total core mass~150Msolar;
+Drho = 15. 
+#in initialize(); dn/dlogm=A*m^(-alpha_init);
+alpha_init = 0.7     
+# in star_formation(); the efficiency of sf;
+# 0.5?
+alpha =  1.
+#in coagulation(); the modified coefficient of cross section;
+beta  = -2.5		 
+#in fragmentation(); fragment spectra powerlaw index;
+beta_frag = 5.0    
+#in conden_nucle(); modified coefficient;  
+#0.5
+kappa = 0.8          
+#in sf_rate_gen(); modified coefficient;
+gamma = 0.5 
+#in frag_rate_gen; modified coefficient;
+co_frag = 4.0 
+# in evapration; powerlaw index;
+# 8.0
+co_evap	= 2.0 
+#in evapration; coefficient;
+#0.5
+evap_mod =  3.0
+#
+q_beta = -1.2 
+#
+dq = 0.05
+#mean rhoc at m = 1.05Msun
+idens = 40.0				   
+#coefficient for cooling function;
+X_fac = 10.0		
+#coefficient for nucleation;
+NUCLEAT	= 3.36e-2/kyr
+#star formation rate
+SF_rate = 0.03/myr    
