@@ -4,7 +4,7 @@ int filename_gen(char *f_txt, char*f_distr, char*f_mass, char*f_star, char*f_Ek,
 	int i;
 //	printf("please input the number of the txt file:\n");
 	start2 = clock();
-	f_txt = 'data130130';
+//f_txt = "data130130";
 //scanf("%s", f_txt);
 	end2 = clock();
     strcpy(f_distr, f_txt);

@@ -11,9 +11,25 @@
 
 static int update();    
 static int initialize(double *time, double *TimeContinue, int *ff, int *ff2);
-int main()
+int main(int argc, char *argv[])
 {
-	start = clock();
+  char f_txt[25];
+	if (argc<2){
+    printf("USAGE: %s <data> [<><>]\n",argv[0]);
+    exit(1);
+  }
+  else{
+    switch (argc)
+    {
+      case 2:
+        sscanf(f_txt,"%s", argv[1]);
+      default:
+        printf("not implement yet\n");
+        exit(1);
+    }
+  }
+  
+  start = clock();
 	int    i = 0, j = 0, k = 0;
 	double mytime = 0, TimeContinue = 0, time1;
 	int ff = 0, ff2 = 0;
@@ -40,7 +56,7 @@ int main()
 	/**********************************/
 
 	/************open file****************/
-	char f_txt[25],f_distr[25], f_mass[25], f_star[25], cp[25], f_Ek[25], filefrag[25], filecoag[25];
+	char f_distr[25], f_mass[25], f_star[25], cp[25], f_Ek[25], filefrag[25], filecoag[25];
 	FILE *fp, *fp1, *fpfrag, *fpcoag;
 	filename_gen(f_txt, f_distr, f_mass, f_star, f_Ek, cp, filefrag, filecoag);
 	fp = fopen(f_txt,"w");
