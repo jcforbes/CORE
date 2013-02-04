@@ -33,7 +33,7 @@ def gen_observable(infile,newpara):
 def main():
     now = str(dt.datetime.utcnow())
     infile = 'observable_example.txt'
-    vcarray = np.linesapce(0.5,2,10)
+    vcarray = np.linspace(0.5,2,10)
     perturb = ['vc']
     #vcarray = np.array([1.5e3])
     for vc in vcarray: 
@@ -41,8 +41,8 @@ def main():
       newpara = dict(zip(perturb,[vc]))
       gen_observable(infile,newpara)
     #print './core %s' % timestamp
-      os.system('Make clean')
-      os.system('Make')
+      os.system('make clean')
+      os.system('make')
       os.system('./core %s' % timestamp)
 if __name__=='__main__':
     main()

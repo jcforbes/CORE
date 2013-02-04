@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
 	fp = fopen(f_txt,"w");
 	print_paras(fp, back_mass, TimeContinue, total_mass_core);
 	fp1=fopen(f_mass, "w");
-	fprintf(fp1, "time(myr)\tstar mass\tcore mass\tghost mass\tchange in rhob\ttotal mass\ttotal Ek(10^40)\n");
+	fprintf(fp1, "#time(myr)\tstar mass\tcore mass\tghost mass\tchange in rhob\ttotal mass\ttotal Ek(10^40)\n");
 	fprintf(fp1, "%f\t%f\t%f\t%f\t%f\t%f\t%f\n", time1, star_mass/Msolar, total_mass_core/Msolar, ghost_mass/Msolar, (rhob-Rhob)/Rhob, total_mass/Msolar, totEk/pow(10,40));
 	/******************************/
 
