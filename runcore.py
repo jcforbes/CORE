@@ -15,9 +15,7 @@ def gen_observable(infile,newpara):
     fin.close()
     para_dic=dict(zip(key,value))
     for key,value in newpara.items():
-        print key,value
         if(key in para_dic):
-            print key,value
             para_dic[key]=value
     outfile = 'observable.h'
     fout = open(outfile,mode='w')
@@ -31,18 +29,22 @@ def gen_observable(infile,newpara):
     return 
 
 def main():
-    now = str(dt.datetime.utcnow())
     infile = 'observable_example.txt'
-    vcarray = np.linesapce(0.5,2,10)
+    vcarray = 1000*np.linspace(0.5,2,10)
+    #alphaarray = np.linspace(0,1.5,10)
     perturb = ['vc']
+    #perturb = ['alpha_init']
     #vcarray = np.array([1.5e3])
     for vc in vcarray: 
+    #for alpha in alphaarray: 
+      now = str(dt.datetime.utcnow())
       timestamp = now.split()[0]+'-'+'-'.join(now.split()[1].split(":")[0:2])
       newpara = dict(zip(perturb,[vc]))
+      #newpara = dict(zip(perturb,[alpha]))
       gen_observable(infile,newpara)
     #print './core %s' % timestamp
-      os.system('Make clean')
-      os.system('Make')
+      os.system('make clean')
+      os.system('make')
       os.system('./core %s' % timestamp)
 if __name__=='__main__':
     main()
