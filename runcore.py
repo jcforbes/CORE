@@ -32,7 +32,6 @@ def gen_observable(infile,newpara={}):
     return 
 
 def main():
-    now = str(dt.datetime.utcnow())
     infile = 'observable_example.txt'
     vcarray = 1000*np.linspace(0.5,2,10)
 #alphaarray = np.linspace(0,1.5,10)
@@ -40,6 +39,7 @@ def main():
     perturb = ['vc']
     #vcarray = np.array([1.5e3])
     for vc in vcarray: 
+        now = str(dt.datetime.utcnow())
       timestamp = now.split()[0]+'-'+'-'.join(now.split()[1].split(":")[0:2])
       newpara = dict(zip(perturb,[vc]))
       gen_observable(infile,newpara)
