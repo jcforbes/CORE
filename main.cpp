@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
 	do
 	{
 		ff2++;
-		conden_nucle();
+		//conden_nucle();
 		for( i = 0; i < 100; i++)
 		{
 			for(j = i; j < 100; j++)

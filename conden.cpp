@@ -20,7 +20,8 @@ int conden_nucle()
 	}
 	back_mass -= m_nucl;
 
-/*	for(i = 0; i < 100; i++)
+/*
+	for(i = 0; i < 100; i++)
 	{
 		tempm = r[i]*r[i] * temp1 * n[i];
 		delta_n[i] += tempm * cn_ratio/m[i];
@@ -36,7 +37,7 @@ int conden_nucle()
 // assume the background  provide kinetic energy;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		delta_Ek[i] += 0.5 * temp2/10 *pow(v_d[i], 2);
 	}
-	*/
+*/	
 //* calculate the condensation & nucleation using the cooling rate from Bruce's book*//
 	return 1;
 }

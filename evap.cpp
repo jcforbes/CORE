@@ -86,7 +86,7 @@ int evaporation()
 	}
 
 //to smooth the transition:
-/*
+
 	evap_temp = evap_rate[Evap_lim-1];
 	for(i=Evap_lim; i<100; i++)
 	{
@@ -96,7 +96,7 @@ int evaporation()
 		delta_Ek[i] -= 0.5*temp*m[i]*pow(v_d[i],2);
 		back_mass += temp*m[i];
 	}
-*/
+
 	return 1;
 }
 
