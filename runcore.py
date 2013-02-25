@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 import os
 import datetime as dt
+import sys
 import numpy as np
 import scipy as sp
-def gen_observable(infile,newpara):
+def gen_observable(infile,newpara={}):
     fin = open(infile,mode='r')
     key = []
     value = []
@@ -33,7 +34,9 @@ def gen_observable(infile,newpara):
 def main():
     now = str(dt.datetime.utcnow())
     infile = 'observable_example.txt'
-    vcarray = np.linspace(0.5,2,10)
+    vcarray = 1000*np.linspace(0.5,2,10)
+#alphaarray = np.linspace(0,1.5,10)
+#perturb = ['alpha_init']
     perturb = ['vc']
     #vcarray = np.array([1.5e3])
     for vc in vcarray: 
@@ -45,4 +48,7 @@ def main():
       os.system('make')
       os.system('./core %s' % timestamp)
 if __name__=='__main__':
-    main()
+    if len(sys.argv)==1: 
+        main()
+    else:
+        gen_observable(sys.argv[1])

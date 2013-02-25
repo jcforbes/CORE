@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
 
 	printf("openfile...,ftxt=%s\n",f_txt);
 	/************open file****************/
-	char f_distr[25], f_mass[25], f_star[25], cp[25], f_Ek[25], filefrag[25], filecoag[25];
+	char f_distr[50], f_mass[50], f_star[50], cp[50], f_Ek[50], filefrag[50], filecoag[50];
 	FILE *fp, *fp1, *fpfrag, *fpcoag;
 	filename_gen(f_txt, f_distr, f_mass, f_star, f_Ek, cp, filefrag, filecoag);
 	fp = fopen(f_txt,"w");

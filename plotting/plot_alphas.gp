@@ -147,39 +147,55 @@ set loadpath
 set fontpath 
 set fit noerrorvariables
 GNUTERM = "x11"
-set xrange[0.05:100]
 set terminal postscript eps enhanced color
-set output 'temp1rdist.eps'
+set output 'init.eps'
 set size 0.7
 set format y '10^{%L}'
 set mytics 10
 set xlabel 'M/M_{sun}'
 set ylabel 'dn/dlogM'
 #setdata
-data = '../temp1-distr_r.txt'
+data = '../data/2013-01-31-16-59-distr_r.txt'
+data1 = '../data/2013-01-31-17-03-distr_r.txt'
+data2 = '../data/2013-01-31-17-08-distr_r.txt'
+data3 = '../data/2013-01-31-17-12-distr_r.txt'
+data4 = '../data/2013-01-31-17-17-distr_r.txt'
+data5 = '../data/2013-01-31-17-30-distr_r.txt'
+data6 = '../data/2013-01-31-17-34-distr_r.txt'
+data7 = '../data/2013-01-31-17-39-distr_r.txt'
 obs = '../data/R09_kde.txt'
-plot data u 1:2 w p pt 1 ps 0.5 lc 1 title 'initial condition',\
-data u 1:2 w l lt 1 lc 1 notitle,\
-data u 1:3 w p pt 7 ps 0.5 lc rgb '#999999' notitle,\
-data u 1:3 w l lt 1 lc rgb '#999999' notitle,\
-data u 1:4 w p pt 7 ps 0.5 lc rgb '#888888' notitle,\
-data u 1:4 w l lt 1 lc rgb '#888888' notitle,\
-data u 1:5 w p pt 7 ps 0.5 lc rgb '#777777' notitle,\
-data u 1:5 w l lt 1 lc rgb '#777777' notitle,\
-data u 1:6 w p pt 7 ps 0.5 lc rgb '#666666' notitle,\
-data u 1:6 w l lt 1 lc rgb '#666666' notitle,\
-data u 1:7 w p pt 7 ps 0.5 lc rgb '#555555' notitle,\
-data u 1:7 w l lt 1 lc rgb '#555555' notitle,\
-data u 1:8 w p pt 7 ps 0.5 lc rgb '#444444' notitle,\
-data u 1:8 w l lt 1 lc rgb '#444444' notitle,\
-data u 1:9 w p pt 7 ps 0.5 lc rgb '#333333' notitle,\
-data u 1:9 w l lt 1 lc rgb '#333333' notitle,\
-data u 1:10 w p pt 7 ps 0.5 lc rgb '#222222' notitle,\
-data u 1:10 w l lt 1 lc rgb '#222222' notitle,\
-data u 1:11 w p pt 7 ps 0.5 lc rgb '#111111' notitle,\
-data u 1:11 w l lt 1 lc rgb '#111111' notitle,\
-data u 1:12 w p pt 7 ps 0.5 lc rgb '#000000' notitle,\
-data u 1:12 w l lt 1 lc rgb '#000000' notitle,\
+plot data u 1:2 w p pt 1 ps 0.5 lc rgb '#990000' notitle,\
+data u 1:2 w l lt 1 lc rgb '#990000' notitle,\
+data u 1:12 w p pt 7 ps 0.5 lc rgb '#999999' notitle,\
+data u 1:12 w l lt 1 lc rgb '#999999' notitle,\
+data1 u 1:2 w p pt 1 ps 0.5 lc rgb '#880000' notitle,\
+data1 u 1:2 w l lt 1 lc rgb '#880000' notitle,\
+data1 u 1:12 w p pt 7 ps 0.5 lc rgb '#888888' notitle,\
+data1 u 1:12 w l lt 1 lc rgb '#888888' notitle,\
+data2 u 1:2 w p pt 1 ps 0.5 lc rgb '#770000' notitle,\
+data2 u 1:2 w l lt 1 lc rgb '#770000' notitle,\
+data2 u 1:12 w p pt 7 ps 0.5 lc rgb '#777777' notitle,\
+data2 u 1:12 w l lt 1 lc rgb '#777777' notitle,\
+data3 u 1:2 w p pt 1 ps 0.5 lc rgb '#660000' notitle,\
+data3 u 1:2 w l lt 1 lc rgb '#660000' notitle,\
+data3 u 1:12 w p pt 7 ps 0.5 lc rgb '#666666' notitle,\
+data3 u 1:12 w l lt 1 lc rgb '#666666' notitle,\
+data4 u 1:2 w p pt 1 ps 0.5 lc 1 notitle,\
+data4 u 1:2 w l lt 1 lc 1 title 'standard initial condition',\
+data4 u 1:12 w p pt 7 ps 0.5 lc rgb '#000000' notitle,\
+data4 u 1:12 w l lt 1 lc rgb '#000000' title 'standard result',\
+data5 u 1:2 w p pt 1 ps 0.5 lc rgb '#550000' notitle,\
+data5 u 1:2 w l lt 1 lc rgb '#550000' notitle,\
+data5 u 1:12 w p pt 7 ps 0.5 lc rgb '#555555' notitle,\
+data5 u 1:12 w l lt 1 lc rgb '#555555' notitle,\
+data6 u 1:2 w p pt 1 ps 0.5 lc rgb '#440000' notitle,\
+data6 u 1:2 w l lt 1 lc rgb '#440000' notitle,\
+data6 u 1:12 w p pt 7 ps 0.5 lc rgb '#444444' notitle,\
+data6 u 1:12 w l lt 1 lc rgb '#444444' notitle,\
+data7 u 1:2 w p pt 1 ps 0.5 lc rgb '#330000' notitle,\
+data7 u 1:2 w l lt 1 lc rgb '#330000' notitle,\
+data7 u 1:12 w p pt 7 ps 0.5 lc rgb '#333333' notitle,\
+data7 u 1:12 w l lt 1 lc rgb '#333333' notitle,\
 obs u 1:2 w l lt 1 lw 2 lc rgb 'grey70' title 'Rathborne2009'
 set output
 set terminal x11
