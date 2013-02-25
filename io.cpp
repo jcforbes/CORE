@@ -75,7 +75,7 @@ int readdata(double *mytime, double *TimeContinue, int *ff, int *ff2)
 	fscanf(fpdata, "%lf", &star_mass);
 	fscanf(fpdata, "%lf", &back_mass);
 	fscanf(fpdata, "%lf", &ghost_mass);
-	for(i = 0; i<100; i++)
+	for(i = 0; i<100; i++) 
 	{
 		fscanf(fpdata, "%lf", n+i);
 	}
@@ -103,7 +103,7 @@ int dataoutput2(double result[15][100], double result_star[15][100], double Ek_e
 //!!0314	fpfrag = fopen(filefrag, "w");
 //!!	fpcoag = fopen(filecoag, "w");
 
-	for(i = 0; i < 100; i++)
+	for(i = 0; i < 100; i++) /* 100 is the total number of bins*/
 	{
 		if(TimeContinue==0)
 		{
@@ -147,23 +147,25 @@ int finalize(double mytime, FILE *fp, char *cp, int ff, int ff2)
 	fclose(fp);
 	FILE *fcp;
 	fcp = fopen(cp,"w");
-	fprintf(fcp, "%f\n", mytime);
-	fprintf(fcp, "%f\n", star_mass);
-	fprintf(fcp, "%f\n", back_mass);
-	fprintf(fcp, "%f\n", ghost_mass);
+	fprintf(fcp, "#mytime = %f\n", mytime);
+	fprintf(fcp, "#star_mass = %f\n", star_mass);
+	fprintf(fcp, "#back_mass = %f\n", back_mass);
+	fprintf(fcp, "#ghost_mass = %f\n", ghost_mass);
+	fprintf(fcp, "#Nbin N VD NSTAR\n", ghost_mass);
+	fprintf(fcp, "#[1] [2] [3] [4]\n", ghost_mass);
 	for(i = 0; i<100; i++)
 	{
-		fprintf(fcp, "%f\n", n[i]);
+		fprintf(fcp, "%d %f %f %f\n", i,n[i],v_d[i],n_star[i]);
 	}
-	fprintf(fcp, "\n");
-	for(i = 0; i<100; i++)
-	{
-		fprintf(fcp, "%f\n", v_d[i]);
-	}
-	for(i = 0; i<100; i++)
-	{
-		fprintf(fcp, "%f\n", n_star[i]);
-	}
+	/*fprintf(fcp, "\n");
+	*for(i = 0; i<100; i++)
+	*{
+	*	fprintf(fcp, "%f\n", v_d[i]);
+	*}
+	*for(i = 0; i<100; i++)
+	*{
+	*	fprintf(fcp, "%f\n", n_star[i]);
+	*}*/
 	fprintf(fcp, "%d\n%d\n", ff, ff2);
 	fclose(fcp);
 	return 1;
