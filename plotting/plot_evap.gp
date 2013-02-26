@@ -148,63 +148,49 @@ set fontpath
 set fit noerrorvariables
 GNUTERM = "x11"
 set terminal postscript eps enhanced color
-set output 'init.eps'
-set size 0.7
+set output 'evap_mod.eps'
 set xrange [0.09:40]
 set yrange [0.5:30]
+set size 0.7
 set format y '10^{%L}'
 set mytics 10
 set xlabel 'M/M_{sun}'
 set ylabel 'dn/dlogM'
 #setdata
-data =  '../data/2013-02-25-16-05-distr_r.txt'
-data1 = '../data/2013-02-25-16-09-distr_r.txt'
-data2 = '../data/2013-02-25-16-14-distr_r.txt'
-data3 = '../data/2013-02-25-16-19-distr_r.txt'
-data4 = '../data/2013-02-25-16-23-distr_r.txt'
-data5 = '../data/2013-02-25-16-28-distr_r.txt'
-data6 = '../data/2013-02-25-16-36-distr_r.txt'
-data7 = '../data/2013-02-25-16-41-distr_r.txt'
-data8 = '../data/2013-02-25-16-46-distr_r.txt'
+data =  '../data/2013-02-26-04-07-distr_r.txt'
+data1 = '../data/2013-02-26-04-12-distr_r.txt'
+data2 = '../data/2013-02-26-04-16-distr_r.txt'
+data3 = '../data/2013-02-26-04-21-distr_r.txt'
+data4 = '../data/2013-02-26-04-25-distr_r.txt'
+data5 = '../data/2013-02-26-04-30-distr_r.txt'
+data6 = '../data/2013-02-26-04-34-distr_r.txt'
+data7 = '../data/2013-02-26-04-39-distr_r.txt'
+data8 = '../data/2013-02-26-04-43-distr_r.txt'
+data9 = '../data/2013-02-26-04-48-distr_r.txt'
 obs = '../data/R09_kde.txt'
-olt = 2
-plot data u 1:2 w p pt 1 ps 0.5 lc rgb '#FF9999' notitle,\
-data u 1:2 w l lt 1 lc rgb '#FF9999' notitle,\
+plot data u 1:2 w p pt 1 ps 0.5 lc 1 notitle,\
+data u 1:2 w l lt 1 lc 1 title 'initial condition',\
 data u 1:12 w p pt 7 ps 0.5 lc rgb '#999999' notitle,\
-data u 1:12 w l lt olt lc rgb '#999999' notitle,\
-data1 u 1:2 w p pt 1 ps 0.5 lc rgb '#FF8888' notitle,\
-data1 u 1:2 w l lt 1 lc rgb '#FF8888' notitle,\
+data u 1:12 w l lt 1 lc rgb '#999999' notitle,\
 data1 u 1:12 w p pt 7 ps 0.5 lc rgb '#888888' notitle,\
-data1 u 1:12 w l lt olt lc rgb '#888888' notitle,\
-data2 u 1:2 w p pt 1 ps 0.5 lc rgb '#FF7777' notitle,\
-data2 u 1:2 w l lt 1 lc rgb '#FF7777' notitle,\
+data1 u 1:12 w l lt 1 lc rgb '#888888' notitle,\
 data2 u 1:12 w p pt 7 ps 0.5 lc rgb '#777777' notitle,\
-data2 u 1:12 w l lt olt lc rgb '#777777' notitle,\
-data3 u 1:2 w p pt 1 ps 0.5 lc rgb '#FF6666' notitle,\
-data3 u 1:2 w l lt 1 lc rgb '#FF6666' notitle,\
-data3 u 1:12 w p pt 7 ps 0.5 lc rgb '#666666' notitle,\
-data3 u 1:12 w l lt olt lc rgb '#666666' notitle,\
-data5 u 1:2 w p pt 1 ps 0.5 lc rgb '#FF5555' notitle,\
-data5 u 1:2 w l lt 1 lc rgb '#FF5555' notitle,\
+data2 u 1:12 w l lt 1 lc rgb '#777777' notitle,\
+data3 u 1:12 w p pt 7 ps 0.5 lc rgb '#000000' notitle,\
+data3 u 1:12 w l lt 1 lw 4 lc rgb '#000000' notitle,\
+data4 u 1:12 w p pt 7 ps 0.5 lc rgb '#666666' notitle,\
+data4 u 1:12 w l lt 1 lc rgb '#666666' title 'standard result',\
 data5 u 1:12 w p pt 7 ps 0.5 lc rgb '#555555' notitle,\
-data5 u 1:12 w l lt olt lc rgb '#555555' notitle,\
-data6 u 1:2 w p pt 1 ps 0.5 lc rgb '#FF4444' notitle,\
-data6 u 1:2 w l lt 1 lc rgb '#FF4444' notitle,\
+data5 u 1:12 w l lt 1 lc rgb '#555555' notitle,\
 data6 u 1:12 w p pt 7 ps 0.5 lc rgb '#444444' notitle,\
-data6 u 1:12 w l lt olt lc rgb '#444444' notitle,\
-data7 u 1:2 w p pt 1 ps 0.5 lc rgb '#FF3333' notitle,\
-data7 u 1:2 w l lt 1 lc rgb '#FF3333' notitle,\
+data6 u 1:12 w l lt 1 lc rgb '#444444' notitle,\
 data7 u 1:12 w p pt 7 ps 0.5 lc rgb '#333333' notitle,\
-data7 u 1:12 w l lt olt lc rgb '#333333' notitle,\
-data8 u 1:2 w p pt 1 ps 0.5 lc rgb '#FF2222' notitle,\
-data8 u 1:2 w l lt 1 lc rgb '#FF2222' notitle,\
+data7 u 1:12 w l lt 1 lc rgb '#333333' notitle,\
 data8 u 1:12 w p pt 7 ps 0.5 lc rgb '#222222' notitle,\
-data8 u 1:12 w l lt olt lc rgb '#222222' notitle,\
-data4 u 1:2 w l lt 1 lw 3 lc rgb '#0000FF' title 'standard initial condition',\
-data4 u 1:12 w l lt 1 lw 3 lc rgb '#000000' title 'standard result',\
+data8 u 1:12 w l lt 1 lc rgb '#222222' notitle,\
+data9 u 1:12 w p pt 7 ps 0.5 lc rgb '#111111' notitle,\
+data9 u 1:12 w l lt 1 lc rgb '#222222' notitle,\
 obs u 1:2 w l lt 1 lw 2 lc rgb 'grey70' title 'Rathborne2009'
 set output
 set terminal x11
 #    EOF
-#data4 u 1:12 w p pt 7 ps 0.5 lc rgb '#000000' notitle,\
-#data4 u 1:2 w p pt 1 ps 0.5 lc 1 notitle,\

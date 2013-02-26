@@ -149,22 +149,24 @@ set fit noerrorvariables
 GNUTERM = "x11"
 set terminal postscript eps enhanced color
 set output 'vc.eps'
+set xrange [0.09:40]
+set yrange [0.5:30]
 set size 0.7
 set format y '10^{%L}'
 set mytics 10
 set xlabel 'M/M_{sun}'
 set ylabel 'dn/dlogM'
 #setdata
-data = '../data/2013-02-18-02-48-distr_r.txt'
-data1 = '../data/2013-02-18-02-53-distr_r.txt'
-data2 = '../data/2013-02-18-02-57-distr_r.txt'
-data3 = '../data/2013-02-18-03-02-distr_r.txt'
-data4 = '../data/2013-02-18-03-06-distr_r.txt'
-data5 = '../data/2013-02-18-03-11-distr_r.txt'
-data6 = '../data/2013-02-18-03-16-distr_r.txt'
-data7 = '../data/2013-02-18-03-20-distr_r.txt'
-data8 = '../data/2013-02-18-03-25-distr_r.txt'
-data9 = '../data/2013-02-18-03-29-distr_r.txt'
+data =  '../data/2013-02-25-14-52-distr_r.txt'
+data1 = '../data/2013-02-25-14-57-distr_r.txt'
+data2 = '../data/2013-02-25-15-01-distr_r.txt'
+data3 = '../data/2013-02-25-15-06-distr_r.txt'
+data4 = '../data/2013-02-25-15-10-distr_r.txt'
+data5 = '../data/2013-02-25-15-15-distr_r.txt'
+data6 = '../data/2013-02-25-15-19-distr_r.txt'
+data7 = '../data/2013-02-25-15-24-distr_r.txt'
+data8 = '../data/2013-02-25-15-28-distr_r.txt'
+data9 = '../data/2013-02-25-15-33-distr_r.txt'
 obs = '../data/R09_kde.txt'
 plot data u 1:2 w p pt 1 ps 0.5 lc 1 notitle,\
 data u 1:2 w l lt 1 lc 1 title 'initial condition',\
@@ -175,7 +177,7 @@ data1 u 1:12 w l lt 1 lc rgb '#888888' notitle,\
 data2 u 1:12 w p pt 7 ps 0.5 lc rgb '#777777' notitle,\
 data2 u 1:12 w l lt 1 lc rgb '#777777' notitle,\
 data3 u 1:12 w p pt 7 ps 0.5 lc rgb '#000000' notitle,\
-data3 u 1:12 w l lt 1 lc rgb '#000000' notitle,\
+data3 u 1:12 w l lt 1 lw 4 lc rgb '#000000' notitle,\
 data4 u 1:12 w p pt 7 ps 0.5 lc rgb '#666666' notitle,\
 data4 u 1:12 w l lt 1 lc rgb '#666666' title 'standard result',\
 data5 u 1:12 w p pt 7 ps 0.5 lc rgb '#555555' notitle,\

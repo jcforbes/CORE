@@ -1,6 +1,7 @@
 #!/usr/bin/python 
 import numpy as np
 import scipy as sp
+import math
 import matplotlib
 from matplotlib import pyplot as plt
 from scipy import stats
@@ -23,6 +24,13 @@ def Observed():
     for i in xrange(len(dist)):
         fout.write('%f %f\n' % (10.**linmass[i],10*dist[i]))
     fout.close()
+    masses = data[:,1]
+    logmass = np.logspace(-1,math.log10(20),10)
+    digitized = np.digitize(masses,logmass)
+    binmass = np.array([len(masses[digitized==i]) for i in range(len(logmass))])
+    print binmass
+    for i in range(1,len(logmass)):
+        print logmass[i], binmass[i]/(logmass[i]-logmass[i-1])
     return
 
 def Kroupa(m):
@@ -42,5 +50,5 @@ def main():
     return
 
 if __name__=='__main__':
-    #Observed()
-    main()
+    Observed()
+    #main()
