@@ -1,6 +1,6 @@
 #ifndef OBSERBABLE_H
 #define OBSERBABLE_H
-#define vc 2e3
+#define vc 1e3
 #define SF_rate 0.03/myr
 #define NUCLEAT 3.36e-2/kyr
 #define Tmass_core0solar 350.0
@@ -12,7 +12,7 @@
 #define alpha_init 0.7
 #define X_fac 10.0
 #define Backmassinsolar 1e3
-#define evap_mod 3.0
+#define evap_mod 5.0
 #define mBE 2*Msolar
 #define v0 0.8e3
 #define beta -2.5
