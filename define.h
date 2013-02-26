@@ -22,9 +22,9 @@
 
 //runtime parameters:
 
-#define unit           (20000)	//timestep interval of output record; 
+#define unit           (100000)	//timestep interval of output record; 
 #define Timestep       (10*yr)
-#define totaltime      (2.0*myr)
+#define totaltime      (10.0*myr)
 #define bin             40          //parameter for initial mass distribution: truncation bin number;
 #define Frag_rate       1.0			//in frag_rate_gen();
 #define Evap_rate       ((7e-3)/kyr)     //calculated according to energy conservation; try /kyr and /yr both;

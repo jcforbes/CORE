@@ -147,17 +147,21 @@ set loadpath
 set fontpath 
 set fit noerrorvariables
 GNUTERM = "x11"
-set xrange[0.05:100]
 set terminal postscript eps enhanced color
-set output 'temp1rdist.eps'
+set output 'evolution.eps'
 set size 0.7
 set format y '10^{%L}'
 set mytics 10
 set xlabel 'M/M_{sun}'
 set ylabel 'dn/dlogM'
+set xrange [0.09:40]
+set yrange [0.5:30]
 #setdata
-data = '../temp1-distr_r.txt'
+data = '../data/check-distr_r.txt'
 obs = '../data/R09_kde.txt'
+#bin(x,width)=width*floor(x/width)
+#binwidth = 0.3
+obshst = '../data/obshst'
 plot data u 1:2 w p pt 1 ps 0.5 lc 1 title 'initial condition',\
 data u 1:2 w l lt 1 lc 1 notitle,\
 data u 1:3 w p pt 7 ps 0.5 lc rgb '#999999' notitle,\
@@ -181,6 +185,7 @@ data u 1:11 w l lt 1 lc rgb '#111111' notitle,\
 data u 1:12 w p pt 7 ps 0.5 lc rgb '#000000' notitle,\
 data u 1:12 w l lt 1 lc rgb '#000000' notitle,\
 obs u 1:2 w l lt 1 lw 2 lc rgb 'grey70' title 'Rathborne2009'
+#obshst using 1:2:(sqrt($2)*$1) w yerrorbars lc rgb 'black'
 set output
 set terminal x11
 #    EOF
