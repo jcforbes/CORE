@@ -4,7 +4,7 @@
 #define SF_rate 0.03/myr
 #define NUCLEAT 3.36e-2/kyr
 #define Tmass_core0solar 350.0
-#define alpha 1.
+#define alpha 0.5
 #define v_m -0.2
 #define Drho 15.
 #define beta_frag 5.0
@@ -12,7 +12,7 @@
 #define alpha_init 0.7
 #define X_fac 10.0
 #define Backmassinsolar 1e3
-#define evap_mod 0.5
+#define evap_mod 2.0
 #define mBE 2*Msolar
 #define v0 0.8e3
 #define beta -2.5
@@ -23,4 +23,5 @@
 #define kappa 0.8
 #define idens 40.0
 #define gamma 0.5
+#define Evap_lim 10
 #endif

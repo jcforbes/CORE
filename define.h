@@ -22,9 +22,9 @@
 
 //runtime parameters:
 
-#define unit           (100000)	//timestep interval of output record; 
+#define unit           (50000)	//timestep interval of output record; 
 #define Timestep       (10*yr)
-#define totaltime      (10.0*myr)
+#define totaltime      (5.0*myr)
 #define bin             40          //parameter for initial mass distribution: truncation bin number;
 #define Frag_rate       1.0			//in frag_rate_gen();
 #define Evap_rate       ((7e-3)/kyr)     //calculated according to energy conservation; try /kyr and /yr both;
@@ -42,7 +42,7 @@ double n_star[100];
 //constant array:
 double m[101], m_insolar[100], sum[100]/*** auxiliary array for m[]***/, v_d[100]/*** core velocity ***/, sf_rate[100];
 double *evap_rate, *dens, *frag_rate/**smoothing function for frag*/; /***initially used, then don't need to update***/
-int Evap_lim;
+//int Evap_lim;
 double A_q;
 
 //need to update every timestep!!!!!!!!:
@@ -58,7 +58,7 @@ extern double n[100], delta_n[100], rk[4][100], Ek[100], delta_Ek[100]; //rk[4][
 extern double n_star[100];
 extern double m[101], m_insolar[100], sum[100]/*** auxiliary array for m[]***/, v_d[100]/*** core velocity ***/, sf_rate[100];
 extern double *evap_rate, *dens, *frag_rate/**smoothing function for frag*/; /***initially used, then don't need to update***/
-extern int Evap_lim;
+//extern int Evap_lim;
 extern double A_q;
 extern double *r, taoKH[100];  /**** auxiliary for calculation ****/
 extern double delta_n_cond[100], delta_n_coag[100], delta_n_frag[100], delta_n_evap[100];
