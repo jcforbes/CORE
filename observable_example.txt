@@ -42,7 +42,7 @@ co_frag = 4.0
 co_evap	= 2.0 
 #in evapration; coefficient;
 #0.5
-evap_mod =  3.0
+evap_mod =  2.0
 #
 q_beta = -1.2 
 #

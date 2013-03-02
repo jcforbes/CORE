@@ -12,7 +12,7 @@
 #define alpha_init 0.7
 #define X_fac 10.0
 #define Backmassinsolar 1e3
-#define evap_mod 5.0
+#define evap_mod 0.5
 #define mBE 2*Msolar
 #define v0 0.8e3
 #define beta -2.5
