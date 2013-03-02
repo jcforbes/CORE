@@ -40,14 +40,17 @@ double *evap_rate_gen()
 
 //// 2012.01.07: 0108-03,i/4; 0108-04,*0.4; 0108-05,i/6;0108-06,(i+3)/6; 0108-08,real number!! EvapLim=40;
 /*CH: try this as temp1*/
-  Evap_lim = 30;
+//  Evap_lim = 30;
   double mintemp = exp(-(Evap_lim+3.0)/6.0);
+//  double mintemp = pow(1/m_insolar[Evap_lim],1./6.)-2;
   double temp = exp(-(i+3.0)/6.0)-mintemp;
+//  double temp = pow(1/m_insolar[i],1./6.)-2-mintemp;
 	while(temp>=0 && i<=Evap_lim)
 	{
-		evap_rate[i] = 0.4*Timestep/(10*yr)*(1e-3)*temp;
+		evap_rate[i] = 0.2*Timestep/(10*yr)*(1e-3)*temp;
 		i++;
 		temp = exp(-(i+3.0)/6.0)-mintemp;
+//		temp = pow(1/m_insolar[i],1./6.)-2-mintemp;
 	}
 //	Evap_lim = 10; /*temp1 use Evaplim=40, CHtemp2 make it 20*/ 
                   /*CHtemp3 make it 10*/

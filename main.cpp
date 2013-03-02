@@ -66,7 +66,11 @@ int main(int argc, char *argv[])
 	print_paras(fp, back_mass, TimeContinue, total_mass_core);
 	fp1=fopen(f_mass, "w");
 	fprintf(fp1, "#time(myr)\tstar mass\tcore mass\tghost mass\tchange in rhob\ttotal mass\ttotal Ek(10^40)\n");
-	fprintf(fp1, "%f\t%f\t%f\t%f\t%f\t%f\t%f\n", time1, star_mass/Msolar, total_mass_core/Msolar, ghost_mass/Msolar, (rhob-Rhob)/Rhob, total_mass/Msolar, totEk/pow(10,40));
+//  total_mass_core = 0;
+//  for (i = 0; i<100; i++){ 
+//    total_mass_core += n[i] * m[i];
+//  }
+  fprintf(fp1, "%f\t%f\t%f\t%f\t%f\t%f\t%f\n", time1, star_mass/Msolar, total_mass_core/Msolar, ghost_mass/Msolar, (rhob-Rhob)/Rhob, total_mass/Msolar, totEk/pow(10,40));
 	/******************************/
 
 	printf("begin iteration...\n");
@@ -74,7 +78,7 @@ int main(int argc, char *argv[])
 	do
 	{
 		ff2++;
-		conden_nucle();
+		//conden_nucle();
 		for( i = 0; i < 100; i++)
 		{
 			for(j = i; j < 100; j++)
@@ -104,10 +108,11 @@ int main(int argc, char *argv[])
 			countcolumncf++;
 		}
 		evaporation();
+		conden_nucle();
 		update();
 		mytime += Timestep;
 		ff++;
-        if(ff >= unit)
+    if(ff >= unit)
 		{
 			time1 = (double)mytime/myr;
 			fprintf(fp1, "%f\t%f\t%f\t%f\t%f\t%f\t%f\n",time1, star_mass/Msolar, total_mass_core/Msolar, ghost_mass/Msolar, (rhob-Rhob)/Rhob, total_mass/Msolar, totEk/pow(10,40));
@@ -168,14 +173,11 @@ int initialize(double *mytime, double *TimeContinue, int *ff, int*ff2)
 {
 	int i, j;
 	double a = 1.07897;//a=exp((log(100)-log(0.05))/2)=m[i+1]/m[i];
-	double A;
+	double A,temp=0;
 	char flag;
 	
 //constants initialize:
 	m[0] = 0.05 * Msolar;
-	A = Totalmass_core0/pow(m[0],1.0-alpha_init);
-	A = A*(1-pow(a,1.0-alpha_init));
-	A = A/(1-pow(a,(1.0-alpha_init)*(bin+1)));
 	sum[0] = 0;
 	m_insolar[0] = (double)m[0]/Msolar;
 	m[100] = 100 * Msolar;
@@ -184,6 +186,7 @@ int initialize(double *mytime, double *TimeContinue, int *ff, int*ff2)
 	delta_n_frag[0] = 0;
 	delta_n_cond[0] = 0;
 	delta_n_evap[0] = 0;
+  temp+=pow(m[0],1.0-alpha_init);
 	for( i = 1; i < 100; i++)
 	{ 
 		m[i] = m[i-1] * a;              
@@ -199,8 +202,15 @@ int initialize(double *mytime, double *TimeContinue, int *ff, int*ff2)
 		{
 			rk[j][i] = 0;
 		}
-	}
-	n_star[0] = 0;
+    if(i<bin){
+      temp+=pow(m[i],1.0-alpha_init);
+    }
+  }
+//	A = Totalmass_core0/pow(m[0],1.0-alpha_init);
+//	A = A*(1-pow(a,1.0-alpha_init));
+//	A = A/(1-pow(a,(1.0-alpha_init)*(bin+1)));
+  A = Totalmass_core0/temp;
+  n_star[0] = 0;
 //interaction:
 //    printf("Use the default initial settings? y/n:\n");
 //	char flag = 'n';
@@ -274,7 +284,7 @@ int update()
 	{
 		n[i] += delta_n[i];
 		delta_n[i] = 0;
-        total_mass_core += n[i] * m[i];
+    total_mass_core += n[i] * m[i];
 		Ek[i] += delta_Ek[i];
 		totEk += Ek[i];
 		delta_Ek[i] = 0;
