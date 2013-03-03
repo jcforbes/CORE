@@ -148,16 +148,16 @@ set fontpath
 set fit noerrorvariables
 GNUTERM = "x11"
 set terminal postscript eps enhanced color
-set output 'evolution_try7.eps'
+set output 'evolution_try2.eps'
 set size 0.7
 set format y '10^{%L}'
 set mytics 10
 set xlabel 'M/M_{sun}'
-set ylabel 'dn/dlogM'
+set ylabel 'dn/dM'
 set xrange [0.09:40]
 set yrange [0.5:30]
 #setdata
-data = '../try7-distr_r.txt'
+data = '../data/try2-distr_r.txt'
 obs = '../data/R09_kde.txt'
 #bin(x,width)=width*floor(x/width)
 #binwidth = 0.3
