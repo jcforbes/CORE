@@ -55,8 +55,6 @@ unset style line
 unset style arrow
 set style histogram clustered gap 2 title  offset character 0, 0, 0
 unset logscale
-set logscale x 10
-set logscale y 10
 set offsets 0, 0, 0, 0
 set pointsize 1
 set pointintervalbox 1
@@ -116,14 +114,14 @@ set xlabel ""
 set xlabel  offset character 0, 0, 0 font "" textcolor lt -1 norotate
 set x2label "" 
 set x2label  offset character 0, 0, 0 font "" textcolor lt -1 norotate
-set xrange [ * : * ] noreverse nowriteback  # (currently [-2.00000:2.00000] )
-set x2range [ * : * ] noreverse nowriteback  # (currently [-1.30103:1.96690] )
+set xrange [ * : * ] noreverse nowriteback  # (currently [0.00000:5.00000] )
+set x2range [ * : * ] noreverse nowriteback  # (currently [0.00000:5.00000] )
 set ylabel "" 
 set ylabel  offset character 0, 0, 0 font "" textcolor lt -1 rotate by -270
 set y2label "" 
 set y2label  offset character 0, 0, 0 font "" textcolor lt -1 rotate by -270
-set yrange [ * : * ] noreverse nowriteback  # (currently [-6.00000:3.00000] )
-set y2range [ * : * ] noreverse nowriteback  # (currently [-6.00000:2.01857] )
+set yrange [ * : * ] noreverse nowriteback  # (currently [160.000:320.000] )
+set y2range [ * : * ] noreverse nowriteback  # (currently [166.441:303.575] )
 set zlabel "" 
 set zlabel  offset character 0, 0, 0 font "" textcolor lt -1 norotate
 set zrange [ * : * ] noreverse nowriteback  # (currently [-10.0000:10.0000] )
@@ -147,45 +145,15 @@ set loadpath
 set fontpath 
 set fit noerrorvariables
 GNUTERM = "x11"
-set terminal postscript eps enhanced color
-set output 'evolution_try2.eps'
+set terminal postscript eps enhanced color 
+set output 'background.eps'
 set size 0.7
-set format y '10^{%L}'
-set mytics 10
-set xlabel 'M/M_{sun}'
-set ylabel 'dn/dM'
-set xrange [0.09:40]
-set yrange [0.5:30]
-#setdata
-data = '../data/try2-distr_r.txt'
-obs = '../data/R09_kde.txt'
-#bin(x,width)=width*floor(x/width)
-#binwidth = 0.3
-obshst = '../data/obshst'
-plot data u 1:2 w p pt 1 ps 0.5 lc 1 title 'initial condition',\
-data u 1:2 w l lt 1 lc 1 notitle,\
-data u 1:3 w p pt 7 ps 0.5 lc rgb '#999999' notitle,\
-data u 1:3 w l lt 1 lc rgb '#999999' notitle,\
-data u 1:4 w p pt 7 ps 0.5 lc rgb '#888888' notitle,\
-data u 1:4 w l lt 1 lc rgb '#888888' notitle,\
-data u 1:5 w p pt 7 ps 0.5 lc rgb '#777777' notitle,\
-data u 1:5 w l lt 1 lc rgb '#777777' notitle,\
-data u 1:6 w p pt 7 ps 0.5 lc rgb '#666666' notitle,\
-data u 1:6 w l lt 1 lc rgb '#666666' notitle,\
-data u 1:7 w p pt 7 ps 0.5 lc rgb '#555555' notitle,\
-data u 1:7 w l lt 1 lc rgb '#555555' notitle,\
-data u 1:8 w p pt 7 ps 0.5 lc rgb '#444444' notitle,\
-data u 1:8 w l lt 1 lc rgb '#444444' notitle,\
-data u 1:9 w p pt 7 ps 0.5 lc rgb '#333333' notitle,\
-data u 1:9 w l lt 1 lc rgb '#333333' notitle,\
-data u 1:10 w p pt 7 ps 0.5 lc rgb '#222222' notitle,\
-data u 1:10 w l lt 1 lc rgb '#222222' notitle,\
-data u 1:11 w p pt 7 ps 0.5 lc rgb '#111111' notitle,\
-data u 1:11 w l lt 1 lc rgb '#111111' notitle,\
-data u 1:12 w p pt 7 ps 0.5 lc rgb '#000000' notitle,\
-data u 1:12 w l lt 1 lc rgb '#000000' notitle,\
-obs u 1:2 w l lt 1 lw 2 lc rgb 'grey70' title 'Rathborne2009'
-#obshst using 1:2:(sqrt($2)*$1) w yerrorbars lc rgb 'black'
+set xlabel "time/Myr"
+set ylabel "M/M_sun"
+set y2label "{/Symbol r}/{/Symbol r}_0"
+set y2tics nomirror
+plot '../data/standard-massd.txt' u 1:3 w l lw 2 lt 1 lc rgb 'black' axis x1y1 title 'total core mass',\
+'../data/standard-massd.txt' u 1:($5+1) w l lw 2 lt 2 lc rgb 'black' axis x1y2 title 'background density'
 set output
 set terminal x11
 #    EOF

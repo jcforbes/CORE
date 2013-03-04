@@ -47,11 +47,8 @@ int main(int argc, char *argv[])
 		{
 			result[countcolumn][i] = n[i];
 			Ek_evo[countcolumn][i] = Ek[i];
-			for(j = 0; j<15; j++)
-			{
-				frag[j][i] = 0;
-				coag[j][i] = 0;
-			}
+			frag[countcolumn][i] = 0;
+			coag[countcolumn][i] = 0;
 		}
 		countcolumn++;
 	}
@@ -75,33 +72,47 @@ int main(int argc, char *argv[])
 
 	printf("begin iteration...\n");
 	/**************iteration**************/
-	do
+  double tempdelta[100]; 
+  do
 	{
 		ff2++;
 		//conden_nucle();
+    for (i = 0; i< 100; i++){
+      delta_n_coag[i] = 0;
+      delta_n_frag[i] = 0;
+    }
 		for( i = 0; i < 100; i++)
 		{
 			for(j = i; j < 100; j++)
 			{
 				coagulation(i, j, n[i], n[j], r[i], r[j]);
 			}
-			star_formation(i);
-			//star_formation_binary(i);
-			//star_formation_hierarchy(i);
 		}
-		for(i = 0; i<100; i++)
-		{
-			coag[countcolumncf][i] += delta_n_coag[i];
-		}
+    for ( i = 0 ; i<100; i++){
+      delta_n_coag[i] = delta_n[i];
+      star_formation(i);
+		//	star_formation_binary(i);
+		//	star_formation_hierarchy(i);
+    }
+//		for(i = 0; i<100; i++)
+//		{
+//			coag[countcolumncf][i] += delta_n_coag[i];
+//		}
+  	for (i = 0; i<100; i++){
+      tempdelta[i] = delta_n[i];
+    }
 		for(i = 0; i<100; i++)
 		{
 //			if (m[i] < mBE)
 				fragmentation(i);
 		}
-		for(i = 0; i<100; i++)
-		{
-			frag[countcolumncf][i] += delta_n_frag[i];
-		}
+    for (i= 0;i<100;i++){
+      delta_n_frag[i] = delta_n[i]-tempdelta[i];
+    }
+//		for(i = 0; i<100; i++)
+//		{
+//			frag[countcolumncf][i] += delta_n_frag[i];
+//		}
 		if(ff2 == unit)
 		{
 			ff2 = 0;
@@ -121,6 +132,8 @@ int main(int argc, char *argv[])
 				result[countcolumn][k] = n[k];
 				result_star[countcolumn][k] = n_star[k];
 				Ek_evo[countcolumn][k] = Ek[k];
+  			coag[countcolumncf][i] = delta_n_coag[i];
+  			frag[countcolumncf][i] = delta_n_frag[i];
 			}
 			countcolumn++;
 			ff = 0;

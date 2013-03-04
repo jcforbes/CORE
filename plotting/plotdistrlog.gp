@@ -147,45 +147,55 @@ set loadpath
 set fontpath 
 set fit noerrorvariables
 GNUTERM = "x11"
-set terminal postscript eps enhanced color
-set output 'evolution_try2.eps'
+set terminal postscript eps enhanced color size 3.5,5
+set output 'evolution.eps'
 set size 0.7
 set format y '10^{%L}'
 set mytics 10
 set xlabel 'M/M_{sun}'
-set ylabel 'dn/dM'
+set ylabel 'dn/dlogM'
 set xrange [0.09:40]
-set yrange [0.5:30]
+#set xrange [0.06:100]
+set yrange [0.5:700]
+#set yrange [0.05:200]
 #setdata
-data = '../data/try2-distr_r.txt'
+set label "1Myr" at graph 0.2, graph 0.8 tc rgb '#888888'
+set label "2Myr" at graph 0.2, graph 0.75 tc rgb '#666666'
+set label "3Myr" at graph 0.2, graph 0.7 tc rgb '#444444'
+set label "4Myr" at graph 0.2, graph 0.64 tc rgb '#222222'
+set label "5Myr" at graph 0.2, graph 0.58 tc rgb '#000000'
+data = '../data/standard-distr_r.txt'
 obs = '../data/R09_kde.txt'
 #bin(x,width)=width*floor(x/width)
 #binwidth = 0.3
 obshst = '../data/obshst'
-plot data u 1:2 w p pt 1 ps 0.5 lc 1 title 'initial condition',\
-data u 1:2 w l lt 1 lc 1 notitle,\
-data u 1:3 w p pt 7 ps 0.5 lc rgb '#999999' notitle,\
-data u 1:3 w l lt 1 lc rgb '#999999' notitle,\
-data u 1:4 w p pt 7 ps 0.5 lc rgb '#888888' notitle,\
-data u 1:4 w l lt 1 lc rgb '#888888' notitle,\
-data u 1:5 w p pt 7 ps 0.5 lc rgb '#777777' notitle,\
-data u 1:5 w l lt 1 lc rgb '#777777' notitle,\
-data u 1:6 w p pt 7 ps 0.5 lc rgb '#666666' notitle,\
-data u 1:6 w l lt 1 lc rgb '#666666' notitle,\
-data u 1:7 w p pt 7 ps 0.5 lc rgb '#555555' notitle,\
-data u 1:7 w l lt 1 lc rgb '#555555' notitle,\
-data u 1:8 w p pt 7 ps 0.5 lc rgb '#444444' notitle,\
-data u 1:8 w l lt 1 lc rgb '#444444' notitle,\
-data u 1:9 w p pt 7 ps 0.5 lc rgb '#333333' notitle,\
-data u 1:9 w l lt 1 lc rgb '#333333' notitle,\
-data u 1:10 w p pt 7 ps 0.5 lc rgb '#222222' notitle,\
-data u 1:10 w l lt 1 lc rgb '#222222' notitle,\
-data u 1:11 w p pt 7 ps 0.5 lc rgb '#111111' notitle,\
-data u 1:11 w l lt 1 lc rgb '#111111' notitle,\
-data u 1:12 w p pt 7 ps 0.5 lc rgb '#000000' notitle,\
-data u 1:12 w l lt 1 lc rgb '#000000' notitle,\
-obs u 1:2 w l lt 1 lw 2 lc rgb 'grey70' title 'Rathborne2009'
+Kdist = '../data/Kroupa.txt'
+plot data u 1:($1*$2/$13) w l lt 2 lc 1 title 'initial condition',\
+data u 1:($1*$4/$13) w p pt 7 ps 0.5 lc rgb '#888888' notitle,\
+data u 1:($1*$4/$13) w l lt 1 lc rgb '#888888' notitle,\
+data u 1:($1*$6/$13) w p pt 7 ps 0.5 lc rgb '#666666' notitle,\
+data u 1:($1*$6/$13) w l lt 1 lc rgb '#666666' notitle,\
+data u 1:($1*$8/$13) w p pt 7 ps 0.5 lc rgb '#444444' notitle,\
+data u 1:($1*$8/$13) w l lt 1 lc rgb '#444444' notitle,\
+data u 1:($1*$10/$13) w p pt 7 ps 0.5 lc rgb '#222222' notitle,\
+data u 1:($1*$10/$13) w l lt 1 lc rgb '#222222' notitle,\
+data u 1:($1*$12/$13) w p pt 7 ps 0.5 lc rgb '#000000' notitle,\
+data u 1:($1*$12/$13) w l lt 1 lc rgb '#000000' notitle,\
+obs u 1:($2*3.6) w l lt 1 lw 3 lc rgb 'grey70' title 'Rathborne2009',\
+Kdist u 1:2 w l lt 5 lw 3 lc 3 title 'IMF (shifted)'
 #obshst using 1:2:(sqrt($2)*$1) w yerrorbars lc rgb 'black'
 set output
 set terminal x11
+#plot data u 1:($1*$2/$13) w p pt 1 ps 0.5 lc 1 notitle,\
+#data u 1:($1*$3/$13) w p pt 7 ps 0.5 lc rgb '#999999' notitle,\
+#data u 1:($1*$3/$13) w l lt 1 lc rgb '#999999' notitle,\
+#data u 1:($1*$5/$13) w p pt 7 ps 0.5 lc rgb '#777777' notitle,\
+#data u 1:($1*$5/$13) w l lt 1 lc rgb '#777777' notitle,\
+#data u 1:($1*$7/$13) w p pt 7 ps 0.5 lc rgb '#555555' notitle,\
+#data u 1:($1*$7/$13) w l lt 1 lc rgb '#555555' notitle,\
+#data u 1:($1*$9/$13) w p pt 7 ps 0.5 lc rgb '#333333' notitle,\
+#data u 1:($1*$9/$13) w l lt 1 lc rgb '#333333' notitle,\
+#data u 1:($1*$11/$13) w p pt 7 ps 0.5 lc rgb '#111111' notitle,\
+#data u 1:($1*$11/$13) w l lt 1 lc rgb '#111111' notitle,\
 #    EOF
+

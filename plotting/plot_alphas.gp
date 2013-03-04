@@ -147,64 +147,74 @@ set loadpath
 set fontpath 
 set fit noerrorvariables
 GNUTERM = "x11"
-set terminal postscript eps enhanced color
+set terminal postscript eps enhanced color size 3.5,5
 set output 'init.eps'
 set size 0.7
 set xrange [0.09:40]
-set yrange [0.5:30]
+set yrange [0.5:700]
 set format y '10^{%L}'
 set mytics 10
 set xlabel 'M/M_{sun}'
 set ylabel 'dn/dlogM'
 #setdata
-data =  '../data/2013-02-25-16-05-distr_r.txt'
-data1 = '../data/2013-02-25-16-09-distr_r.txt'
-data2 = '../data/2013-02-25-16-14-distr_r.txt'
-data3 = '../data/2013-02-25-16-19-distr_r.txt'
-data4 = '../data/2013-02-25-16-23-distr_r.txt'
-data5 = '../data/2013-02-25-16-28-distr_r.txt'
-data6 = '../data/2013-02-25-16-36-distr_r.txt'
-data7 = '../data/2013-02-25-16-41-distr_r.txt'
-data8 = '../data/2013-02-25-16-46-distr_r.txt'
+data =  '../data/a2013-03-03-23-14-distr_r.txt'
+data1 = '../data/a2013-03-03-23-34-distr_r.txt'
+data2 = '../data/a2013-03-03-23-55-distr_r.txt'
+data3 = '../data/a2013-03-04-00-15-distr_r.txt'
+data4 = '../data/a2013-03-04-00-35-distr_r.txt'
+data5 = '../data/a2013-03-04-00-55-distr_r.txt'
+data6 = '../data/a2013-03-04-01-15-distr_r.txt'
+data7 = '../data/a2013-03-04-01-35-distr_r.txt'
+data8 = '../data/a2013-03-04-01-55-distr_r.txt'
+
+set label "0" at graph 0.9, graph 0.37 tc rgb '#999999'
+set label "0.33" at graph 0.82, graph 0.33 tc rgb '#777777'
+set label "0.67" at graph 0.77, graph 0.3 tc rgb '#000000'
+set label "1.0" at graph 0.73, graph 0.25 tc rgb '#444444'
+set label "1.33" at graph 0.65, graph 0.2 tc rgb '#222222'
+
+#obs = '../data/R0a2013-03-04-02-15-distr_r.txt9_kde.txt'
 obs = '../data/R09_kde.txt'
+Kdist = '../data/Kroupa.txt'
 olt = 2
-plot data u 1:2 w p pt 1 ps 0.5 lc rgb '#FF9999' notitle,\
-data u 1:2 w l lt 1 lc rgb '#FF9999' notitle,\
-data u 1:12 w p pt 7 ps 0.5 lc rgb '#999999' notitle,\
-data u 1:12 w l lt olt lc rgb '#999999' notitle,\
-data1 u 1:2 w p pt 1 ps 0.5 lc rgb '#FF8888' notitle,\
-data1 u 1:2 w l lt 1 lc rgb '#FF8888' notitle,\
-data1 u 1:12 w p pt 7 ps 0.5 lc rgb '#888888' notitle,\
-data1 u 1:12 w l lt olt lc rgb '#888888' notitle,\
-data2 u 1:2 w p pt 1 ps 0.5 lc rgb '#FF7777' notitle,\
-data2 u 1:2 w l lt 1 lc rgb '#FF7777' notitle,\
-data2 u 1:12 w p pt 7 ps 0.5 lc rgb '#777777' notitle,\
-data2 u 1:12 w l lt olt lc rgb '#777777' notitle,\
-data3 u 1:2 w p pt 1 ps 0.5 lc rgb '#FF6666' notitle,\
-data3 u 1:2 w l lt 1 lc rgb '#FF6666' notitle,\
-data3 u 1:12 w p pt 7 ps 0.5 lc rgb '#666666' notitle,\
-data3 u 1:12 w l lt olt lc rgb '#666666' notitle,\
-data5 u 1:2 w p pt 1 ps 0.5 lc rgb '#FF5555' notitle,\
-data5 u 1:2 w l lt 1 lc rgb '#FF5555' notitle,\
-data5 u 1:12 w p pt 7 ps 0.5 lc rgb '#555555' notitle,\
-data5 u 1:12 w l lt olt lc rgb '#555555' notitle,\
-data6 u 1:2 w p pt 1 ps 0.5 lc rgb '#FF4444' notitle,\
-data6 u 1:2 w l lt 1 lc rgb '#FF4444' notitle,\
-data6 u 1:12 w p pt 7 ps 0.5 lc rgb '#444444' notitle,\
-data6 u 1:12 w l lt olt lc rgb '#444444' notitle,\
-data7 u 1:2 w p pt 1 ps 0.5 lc rgb '#FF3333' notitle,\
-data7 u 1:2 w l lt 1 lc rgb '#FF3333' notitle,\
-data7 u 1:12 w p pt 7 ps 0.5 lc rgb '#333333' notitle,\
-data7 u 1:12 w l lt olt lc rgb '#333333' notitle,\
-data8 u 1:2 w p pt 1 ps 0.5 lc rgb '#FF2222' notitle,\
-data8 u 1:2 w l lt 1 lc rgb '#FF2222' notitle,\
-data8 u 1:12 w p pt 7 ps 0.5 lc rgb '#222222' notitle,\
-data8 u 1:12 w l lt olt lc rgb '#222222' notitle,\
-data4 u 1:2 w l lt 1 lw 3 lc rgb '#0000FF' title 'standard initial condition',\
-data4 u 1:12 w l lt 1 lw 3 lc rgb '#000000' title 'standard result',\
-obs u 1:2 w l lt 1 lw 2 lc rgb 'grey70' title 'Rathborne2009'
+plot data u 1:($1*$2/$13) w p pt 1 ps 0.5 lc rgb '#FF9999' notitle,\
+data u 1:($1*$2/$13) w l lt 1 lc rgb '#FF9999' notitle,\
+data u 1:($1*$12/$13) w p pt 7 ps 0.5 lc rgb '#999999' notitle,\
+data u 1:($1*$12/$13) w l lt olt lc rgb '#999999' notitle,\
+data2 u 1:($1*$2/$13)w p pt 1 ps 0.5 lc rgb '#FF6666' notitle,\
+data2 u 1:($1*$2/$13)w l lt 1 lc rgb '#FF6666' notitle,\
+data2 u 1:($1*$12/$13) w p pt 7 ps 0.5 lc rgb '#777777' notitle,\
+data2 u 1:($1*$12/$13) w l lt olt lc rgb '#777777' notitle,\
+data6 u 1:($1*$2/$13)w p pt 1 ps 0.5 lc rgb '#FF4444' notitle,\
+data6 u 1:($1*$2/$13)w l lt 1 lc rgb '#FF4444' notitle,\
+data6 u 1:($1*$12/$13) w p pt 7 ps 0.5 lc rgb '#444444' notitle,\
+data6 u 1:($1*$12/$13) w l lt olt lc rgb '#444444' notitle,\
+data8 u 1:($1*$2/$13)w p pt 1 ps 0.5 lc rgb '#FF1111' notitle,\
+data8 u 1:($1*$2/$13)w l lt 1 lc rgb '#FF1111' notitle,\
+data8 u 1:($1*$12/$13) w p pt 7 ps 0.5 lc rgb '#222222' notitle,\
+data8 u 1:($1*$12/$13) w l lt olt lc rgb '#222222' notitle,\
+data4 u 1:($1*$2/$13)w l lt 1 lw 3 lc rgb '#0000FF' title 'standard initial condition',\
+data4 u 1:($1*$12/$13) w l lt 1 lw 3 lc rgb '#000000' title 'standard result',\
+Kdist u 1:2 w l lt 5 lw 3 lc 3 title 'IMF (shifted)',\
+obs u 1:($2*3.6) w l lt 1 lw 3 lc rgb 'grey70' title 'Rathborne2009'
 set output
 set terminal x11
 #    EOF
 #data4 u 1:12 w p pt 7 ps 0.5 lc rgb '#000000' notitle,\
 #data4 u 1:2 w p pt 1 ps 0.5 lc 1 notitle,\
+#data1 u 1:($1*$2/$13) w p pt 1 ps 0.5 lc rgb '#FF8888' notitle,\
+#data1 u 1:($1*$2/$13) w l lt 1 lc rgb '#FF8888' notitle,\
+#data1 u 1:($1*$12/$13) w p pt 7 ps 0.5 lc rgb '#888888' notitle,\
+#data1 u 1:($1*$12/$13) w l lt olt lc rgb '#888888' notitle,\
+#data3 u 1:($1*$2/$13)w p pt 1 ps 0.5 lc rgb '#FF6666' notitle,\
+#data3 u 1:($1*$2/$13)w l lt 1 lc rgb '#FF6666' notitle,\
+#data3 u 1:($1*$12/$13) w p pt 7 ps 0.5 lc rgb '#666666' notitle,\
+#data3 u 1:($1*$12/$13) w l lt olt lc rgb '#666666' notitle,\
+#data5 u 1:($1*$2/$13)w p pt 1 ps 0.5 lc rgb '#FF5555' notitle,\
+#data5 u 1:($1*$2/$13)w l lt 1 lc rgb '#FF5555' notitle,\
+#data5 u 1:($1*$12/$13) w p pt 7 ps 0.5 lc rgb '#555555' notitle,\
+#data5 u 1:($1*$12/$13) w l lt olt lc rgb '#555555' notitle,\
+#data7 u 1:($1*$2/$13)w p pt 1 ps 0.5 lc rgb '#FF3333' notitle,\
+#data7 u 1:($1*$2/$13)w l lt 1 lc rgb '#FF3333' notitle,\
+#data7 u 1:($1*$12/$13) w p pt 7 ps 0.5 lc rgb '#333333' notitle,\
+#data7 u 1:($1*$12/$13) w l lt olt lc rgb '#333333' notitle,\
