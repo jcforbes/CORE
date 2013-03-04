@@ -39,7 +39,7 @@ def main():
     perturb = ['vc']
     #vcarray = np.array([1.5e3])
     for vc in vcarray: 
-        now = str(dt.datetime.utcnow())
+      now = str(dt.datetime.utcnow())
       timestamp = now.split()[0]+'-'+'-'.join(now.split()[1].split(":")[0:2])
       newpara = dict(zip(perturb,[vc]))
       gen_observable(infile,newpara)

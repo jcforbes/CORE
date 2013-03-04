@@ -55,8 +55,6 @@ unset style line
 unset style arrow
 set style histogram clustered gap 2 title  offset character 0, 0, 0
 unset logscale
-set logscale x 10
-set logscale y 10
 set offsets 0, 0, 0, 0
 set pointsize 1
 set pointintervalbox 1
@@ -116,14 +114,14 @@ set xlabel ""
 set xlabel  offset character 0, 0, 0 font "" textcolor lt -1 norotate
 set x2label "" 
 set x2label  offset character 0, 0, 0 font "" textcolor lt -1 norotate
-set xrange [ * : * ] noreverse nowriteback  # (currently [-2.00000:2.00000] )
-set x2range [ * : * ] noreverse nowriteback  # (currently [-1.30103:1.96690] )
+set xrange [ * : * ] noreverse nowriteback  # (currently [0.00000:5.00000] )
+set x2range [ * : * ] noreverse nowriteback  # (currently [0.00000:5.00000] )
 set ylabel "" 
 set ylabel  offset character 0, 0, 0 font "" textcolor lt -1 rotate by -270
 set y2label "" 
 set y2label  offset character 0, 0, 0 font "" textcolor lt -1 rotate by -270
-set yrange [ * : * ] noreverse nowriteback  # (currently [-6.00000:3.00000] )
-set y2range [ * : * ] noreverse nowriteback  # (currently [-6.00000:2.01857] )
+set yrange [ * : * ] noreverse nowriteback  # (currently [160.000:320.000] )
+set y2range [ * : * ] noreverse nowriteback  # (currently [166.441:303.575] )
 set zlabel "" 
 set zlabel  offset character 0, 0, 0 font "" textcolor lt -1 norotate
 set zrange [ * : * ] noreverse nowriteback  # (currently [-10.0000:10.0000] )
@@ -147,74 +145,15 @@ set loadpath
 set fontpath 
 set fit noerrorvariables
 GNUTERM = "x11"
-set terminal postscript eps enhanced color size 3.5,5
-set output 'init.eps'
+set terminal postscript eps enhanced color 
+set output 'background.eps'
 set size 0.7
-set xrange [0.09:40]
-set yrange [0.5:700]
-set format y '10^{%L}'
-set mytics 10
-set xlabel 'M/M_{sun}'
-set ylabel 'dn/dlogM'
-#setdata
-data =  '../data/a2013-03-03-23-14-distr_r.txt'
-data1 = '../data/a2013-03-03-23-34-distr_r.txt'
-data2 = '../data/a2013-03-03-23-55-distr_r.txt'
-data3 = '../data/a2013-03-04-00-15-distr_r.txt'
-data4 = '../data/a2013-03-04-00-35-distr_r.txt'
-data5 = '../data/a2013-03-04-00-55-distr_r.txt'
-data6 = '../data/a2013-03-04-01-15-distr_r.txt'
-data7 = '../data/a2013-03-04-01-35-distr_r.txt'
-data8 = '../data/a2013-03-04-01-55-distr_r.txt'
-
-set label "0" at graph 0.9, graph 0.37 tc rgb '#999999'
-set label "0.33" at graph 0.82, graph 0.33 tc rgb '#777777'
-set label "0.67" at graph 0.77, graph 0.3 tc rgb '#000000'
-set label "1.0" at graph 0.73, graph 0.25 tc rgb '#444444'
-set label "1.33" at graph 0.65, graph 0.2 tc rgb '#222222'
-
-#obs = '../data/R0a2013-03-04-02-15-distr_r.txt9_kde.txt'
-obs = '../data/R09_kde.txt'
-Kdist = '../data/Kroupa.txt'
-olt = 2
-plot data u 1:($1*$2/$13) w p pt 1 ps 0.5 lc rgb '#FF9999' notitle,\
-data u 1:($1*$2/$13) w l lt 1 lc rgb '#FF9999' notitle,\
-data u 1:($1*$12/$13) w p pt 7 ps 0.5 lc rgb '#999999' notitle,\
-data u 1:($1*$12/$13) w l lt olt lc rgb '#999999' notitle,\
-data2 u 1:($1*$2/$13)w p pt 1 ps 0.5 lc rgb '#FF6666' notitle,\
-data2 u 1:($1*$2/$13)w l lt 1 lc rgb '#FF6666' notitle,\
-data2 u 1:($1*$12/$13) w p pt 7 ps 0.5 lc rgb '#777777' notitle,\
-data2 u 1:($1*$12/$13) w l lt olt lc rgb '#777777' notitle,\
-data6 u 1:($1*$2/$13)w p pt 1 ps 0.5 lc rgb '#FF4444' notitle,\
-data6 u 1:($1*$2/$13)w l lt 1 lc rgb '#FF4444' notitle,\
-data6 u 1:($1*$12/$13) w p pt 7 ps 0.5 lc rgb '#444444' notitle,\
-data6 u 1:($1*$12/$13) w l lt olt lc rgb '#444444' notitle,\
-data8 u 1:($1*$2/$13)w p pt 1 ps 0.5 lc rgb '#FF1111' notitle,\
-data8 u 1:($1*$2/$13)w l lt 1 lc rgb '#FF1111' notitle,\
-data8 u 1:($1*$12/$13) w p pt 7 ps 0.5 lc rgb '#222222' notitle,\
-data8 u 1:($1*$12/$13) w l lt olt lc rgb '#222222' notitle,\
-data4 u 1:($1*$2/$13)w l lt 1 lw 3 lc rgb '#0000FF' title 'standard initial condition',\
-data4 u 1:($1*$12/$13) w l lt 1 lw 3 lc rgb '#000000' title 'standard result',\
-Kdist u 1:2 w l lt 5 lw 3 lc 3 title 'IMF (shifted)',\
-obs u 1:($2*3.6) w l lt 1 lw 3 lc rgb 'grey70' title 'Rathborne2009'
+set xlabel "time/Myr"
+set ylabel "M/M_sun"
+set y2label "{/Symbol r}/{/Symbol r}_0"
+set y2tics nomirror
+plot '../data/standard-massd.txt' u 1:3 w l lw 2 lt 1 lc rgb 'black' axis x1y1 title 'total core mass',\
+'../data/standard-massd.txt' u 1:($5+1) w l lw 2 lt 2 lc rgb 'black' axis x1y2 title 'background density'
 set output
 set terminal x11
 #    EOF
-#data4 u 1:12 w p pt 7 ps 0.5 lc rgb '#000000' notitle,\
-#data4 u 1:2 w p pt 1 ps 0.5 lc 1 notitle,\
-#data1 u 1:($1*$2/$13) w p pt 1 ps 0.5 lc rgb '#FF8888' notitle,\
-#data1 u 1:($1*$2/$13) w l lt 1 lc rgb '#FF8888' notitle,\
-#data1 u 1:($1*$12/$13) w p pt 7 ps 0.5 lc rgb '#888888' notitle,\
-#data1 u 1:($1*$12/$13) w l lt olt lc rgb '#888888' notitle,\
-#data3 u 1:($1*$2/$13)w p pt 1 ps 0.5 lc rgb '#FF6666' notitle,\
-#data3 u 1:($1*$2/$13)w l lt 1 lc rgb '#FF6666' notitle,\
-#data3 u 1:($1*$12/$13) w p pt 7 ps 0.5 lc rgb '#666666' notitle,\
-#data3 u 1:($1*$12/$13) w l lt olt lc rgb '#666666' notitle,\
-#data5 u 1:($1*$2/$13)w p pt 1 ps 0.5 lc rgb '#FF5555' notitle,\
-#data5 u 1:($1*$2/$13)w l lt 1 lc rgb '#FF5555' notitle,\
-#data5 u 1:($1*$12/$13) w p pt 7 ps 0.5 lc rgb '#555555' notitle,\
-#data5 u 1:($1*$12/$13) w l lt olt lc rgb '#555555' notitle,\
-#data7 u 1:($1*$2/$13)w p pt 1 ps 0.5 lc rgb '#FF3333' notitle,\
-#data7 u 1:($1*$2/$13)w l lt 1 lc rgb '#FF3333' notitle,\
-#data7 u 1:($1*$12/$13) w p pt 7 ps 0.5 lc rgb '#333333' notitle,\
-#data7 u 1:($1*$12/$13) w l lt olt lc rgb '#333333' notitle,\

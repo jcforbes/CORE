@@ -101,9 +101,9 @@ int dataoutput2(double result[15][100], double result_star[15][100], double Ek_e
 	fptemp = fopen(f_distr,"w");
 	fpEk = fopen(f_Ek, "w");
 	fpstar = fopen(f_star, "w");
-//!!0314	fpfrag = fopen(filefrag, "w");
-//!!	fpcoag = fopen(filecoag, "w");
-
+	fpfrag = fopen(filefrag, "w");
+  fpcoag = fopen(filecoag, "w");
+  
 	for(i = 0; i < 100; i++) /* 100 is the total number of bins*/
 	{
 		if(TimeContinue==0)
@@ -111,16 +111,20 @@ int dataoutput2(double result[15][100], double result_star[15][100], double Ek_e
 			fprintf(fptemp,"%f\t",m_insolar[i]);
 			fprintf(fpEk,"%f\t",m_insolar[i]);
 			fprintf(fpstar,"%f\t",m_insolar[i]);
-//!!		fprintf(fpfrag,"%f\t",m_insolar[i]);
-//!!		fprintf(fpcoag,"%f\t",m_insolar[i]);
+  		fprintf(fpfrag,"%f\t",m_insolar[i]);
+    	fprintf(fpcoag,"%f\t",m_insolar[i]);
 		}
 		for(j = 0; j < countcolumn; j++)
 		{
 			fprintf(fptemp, "%f\t", result[j][i]);
+			fprintf(fpfrag, "%f\t", frag[j][i]);
+			fprintf(fpcoag, "%f\t", coag[j][i]);
 			fprintf(fpEk, "%f\t", Ek_evo[j][i]/pow(10,40));
 			fprintf(fpstar, "%f\t", result_star[j][i]);
 		}
 		fprintf(fptemp, "\n");
+		fprintf(fpfrag, "\n");
+		fprintf(fpcoag, "\n");
 		fprintf(fpEk, "\n");
 		fprintf(fpstar, "\n");
 //		for(j = 0; j < countcolumncf - 1; j++)
@@ -134,8 +138,8 @@ int dataoutput2(double result[15][100], double result_star[15][100], double Ek_e
 	fclose(fpEk);
 	fclose(fptemp);
 	fclose(fpstar);
-//!!	fclose(fpfrag);
-//!!	fclose(fpcoag);
+	fclose(fpfrag);
+	fclose(fpcoag);
 	return 1;
 }
 int finalize(double mytime, FILE *fp, char *cp, int ff, int ff2)
