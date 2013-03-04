@@ -1,9 +1,9 @@
 #ifndef OBSERBABLE_H
 #define OBSERBABLE_H
-#define vc 1e3
+#define vc 2000.0
 #define SF_rate 0.03/myr
 #define NUCLEAT 3.36e-2/kyr
-#define Tmass_core0solar 350.0
+#define Tmass_core0solar 250.0
 #define alpha 1.0
 #define v_m -0.2
 #define Drho 15.
