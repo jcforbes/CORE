@@ -25,7 +25,7 @@ Drho = 15.
 alpha_init = 0.7     
 # in star_formation(); the efficiency of sf;
 # 0.5?
-alpha =  0.5
+alpha =  1.0
 #in coagulation(); the modified coefficient of cross section;
 beta  = -2.5		 
 #in fragmentation(); fragment spectra powerlaw index;
@@ -42,7 +42,7 @@ co_frag = 4.0
 co_evap	= 2.0 
 #in evapration; coefficient;
 #0.5
-evap_mod =  3.0
+evap_mod =  2.0
 #
 q_beta = -1.2 
 #
@@ -56,4 +56,4 @@ NUCLEAT	= 3.36e-2/kyr
 #star formation rate
 SF_rate = 0.03/myr   
 #limit end of evapration
-Evap_lim= 10
+Evap_lim= 30

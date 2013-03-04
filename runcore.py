@@ -4,6 +4,7 @@ import datetime as dt
 import sys
 import numpy as np
 import scipy as sp
+import math
 def gen_observable(infile,newpara={}):
     fin = open(infile,mode='r')
     key = []
@@ -33,17 +34,23 @@ def gen_observable(infile,newpara={}):
 
 def main():
     infile = 'observable_example.txt'
-    vcarray = 1000*np.linspace(0.5,2,10)
-#alphaarray = np.linspace(0,1.5,10)
-#perturb = ['alpha_init']
-    perturb = ['vc']
+#    vcarray = 1000*np.linspace(0.5,2,10)
+#    alphaarray = np.linspace(0,1.5,10)
+    evaparray = np.logspace(-1,math.log10(5),10)
+#    perturb = ['alpha_init']
+    perturb = ['evap_mod']
+#    perturb = ['vc']
     #vcarray = np.array([1.5e3])
+#    for alpha in alphaarray:
+#    for evap in evaparray:
     for vc in vcarray: 
       now = str(dt.datetime.utcnow())
       timestamp = now.split()[0]+'-'+'-'.join(now.split()[1].split(":")[0:2])
       newpara = dict(zip(perturb,[vc]))
+#      newpara = dict(zip(perturb,[alpha]))
+#      newpara = dict(zip(perturb,[evap]))
       gen_observable(infile,newpara)
-    #print './core %s' % timestamp
+      print './core %s' % timestamp
       os.system('make clean')
       os.system('make')
       os.system('./core %s' % timestamp)

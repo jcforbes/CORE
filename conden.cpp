@@ -4,12 +4,14 @@ int conden_nucle()
 	double m_nucl=0, const1, temp1;
 	const1 = Pi * v0 * Timestep * rhob * kappa;
 	int i;
+	
   double cn_ratio=0.8,ratio;
 //	for(i=Evap_lim; i<100; i++)
   ratio = back_mass/Msolar/Backmassinsolar;
 	for(i=0; i<100; i++)
  {
- 	temp1 = pow(ratio,2)*const1*r[i]*r[i]*n[i];
+ 	//temp1 = pow(ratio,2)*const1*r[i]*r[i]*n[i];
+ 	temp1 = ratio*const1*r[i]*r[i]*n[i];
  	back_mass -= temp1;
  	delta_n[i] += temp1/m[i];
  	delta_Ek[i] += 0.5 * temp1 * pow(v_d[i],2);

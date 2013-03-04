@@ -44,10 +44,10 @@ double *evap_rate_gen()
   double mintemp = exp(-(Evap_lim+3.0)/6.0);
 //  double mintemp = pow(1/m_insolar[Evap_lim],1./6.)-2;
   double temp = exp(-(i+3.0)/6.0)-mintemp;
-//  double temp = pow(1/m_insolar[i],1./6.)-2-mintemp;
+  //double temp = pow(1/m_insolar[i],1./6.)-2-mintemp;
 	while(temp>=0 && i<=Evap_lim)
 	{
-		evap_rate[i] = 0.2*Timestep/(10*yr)*(1e-3)*temp;
+		evap_rate[i] = 0.3*Timestep/(10*yr)*(1e-3)*temp;
 		i++;
 		temp = exp(-(i+3.0)/6.0)-mintemp;
 //		temp = pow(1/m_insolar[i],1./6.)-2-mintemp;

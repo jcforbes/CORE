@@ -13,7 +13,7 @@ static int update();
 static int initialize(double *time, double *TimeContinue, int *ff, int *ff2);
 int main(int argc, char *argv[])
 {
-  char f_txt[25];
+  char f_txt[50];
   if (argc<2){
     printf("USAGE: %s <data> [<><>]\n",argv[0]);
     exit(1);
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
 
 	printf("openfile...,ftxt=%s\n",f_txt);
 	/************open file****************/
-	char f_distr[50], f_mass[50], f_star[50], cp[50], f_Ek[50], filefrag[50], filecoag[50];
+	char f_distr[100], f_mass[100], f_star[100], cp[100], f_Ek[100], filefrag[100], filecoag[100];
 	FILE *fp, *fp1, *fpfrag, *fpcoag;
 	filename_gen(f_txt, f_distr, f_mass, f_star, f_Ek, cp, filefrag, filecoag);
 	fp = fopen(f_txt,"w");
