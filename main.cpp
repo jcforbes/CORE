@@ -132,8 +132,8 @@ int main(int argc, char *argv[])
 				result[countcolumn][k] = n[k];
 				result_star[countcolumn][k] = n_star[k];
 				Ek_evo[countcolumn][k] = Ek[k];
-  			coag[countcolumncf][i] = delta_n_coag[i];
-  			frag[countcolumncf][i] = delta_n_frag[i];
+  			coag[countcolumncf][k] = delta_n_coag[k];
+  			frag[countcolumncf][k] = delta_n_frag[k];
 			}
 			countcolumn++;
 			ff = 0;
