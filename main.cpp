@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
 	/**************iteration**************/
   double tempdelta[100]; 
   do
-	{
+  {
 		ff2++;
 		//conden_nucle();
     for (i = 0; i< 100; i++){
