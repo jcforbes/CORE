@@ -7,7 +7,7 @@ mBE = 2*Msolar
 #
 Backmassinsolar = 1e3
 #
-Tmass_core0solar = 350.0
+Tmass_core0solar = 250.0
 #velocity dispersion of cores.m/s
 #//(2.0e3)   //before 0209-05(3e3)          
 vc = 1e3 
