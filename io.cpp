@@ -110,8 +110,8 @@ int dataoutput2(double result[15][100], double result_star[15][100], double Ek_e
 			fprintf(fptemp,"%f\t",m_insolar[i]);
 			fprintf(fpEk,"%f\t",m_insolar[i]);
 			fprintf(fpstar,"%f\t",m_insolar[i]);
-  		fprintf(fpfrag,"%f\t",m_insolar[i]);
-    	fprintf(fpcoag,"%f\t",m_insolar[i]);
+  			fprintf(fpfrag,"%f\t",m_insolar[i]);
+    			fprintf(fpcoag,"%f\t",m_insolar[i]);
 		}
 		for(j = 0; j < countcolumn; j++)
 		{
