@@ -64,7 +64,7 @@ int print_paras(FILE *fp, double back_mass, double TimeContinue, double total_ma
 	{
 		fprintf(fp,"this continues file %s\ninitial time is: %fmyr\n", f_rst, TimeContinue/myr);
 	}
-	fprintf(fp, "bin: %d\nalpha: %f\nbeta: %f\nSF_rate: %f /myr\nGaussian sigma1: %f\nGaussian sigema2: %f\nfilling factor: %f\n",bin, alpha, beta, SF_rate*myr, Gauss1, Gauss2, (double)total_mass_core/back_mass/drho);
+	fprintf(fp, "bin: %d\nalpha: %f\nbeta: %f\nSF_rate: %f /myr\nGaussian sigma1: %f\nGaussian sigema2: %f\nfilling factor: %f\n",bin, alpha_sf, beta, SF_rate*myr, Gauss1, Gauss2, (double)total_mass_core/back_mass/drho);
 	fprintf(fp, "Rb: %f pc\nBackground mass: %f Msolar\ntimestep: %f yr\nevaporation rate: %f%% per kyr\nrhoc: %fe-16\nDensity contrast: %f\n", rb, bm, timestep, eva, rhoc1, drho);
 	fprintf(fp, "v_m index: %f\n", v_m);
 	fprintf(fp, "Bonnor-Ebert mass: %f Msolar\n", BEmass/Msolar);
@@ -83,31 +83,44 @@ int readdata(double *mytime, double *TimeContinue, int *ff, int *ff2, char *f_rs
   	vector <string> data;
 	ifstream fpdata;
 	strcat(f_rst,"-cp.txt");
-  	fpdata.open(f_rst);
-  	fpdata.close();
-//	getline(fpdata,line);
-//	data = split(line,"=");
-//	TimeContinue = atof(data[1]);
-//	mytime[0] = TimeContinue;
-//	getline(fpdata,line);
-//	data = split(line,"=");
-//	star_mass = atof(data[1]);
-//	getline(fpdata,line);
-//	data = split(line,"=");
-//	back_mass = atof(data[1]);
-//	getline(fpdata,line);
-//	data = split(line,"=");
-//	ghost_mass = atof(data[1]);
-//	printf("read from %s, with TimeContinue = %lf, star_mass = %lf, back_mass = %lf,ghost_mass=%lf", f_rst, TimeContinue, &star_mass, &back_mass, &ghost_mass);
-	exit(0);
+  fpdata.open(f_rst);
+	getline(fpdata,line);
+	data = split(line,'=');
+	TimeContinue[0] = atof(data[1].c_str());
+	mytime[0] = TimeContinue[0];
+	getline(fpdata,line);
+	data = split(line,'=');
+	star_mass = atof(data[1].c_str());
+	getline(fpdata,line);
+	data = split(line,'=');
+	back_mass = atof(data[1].c_str());
+	getline(fpdata,line);
+	data = split(line,'=');
+	ghost_mass = atof(data[1].c_str());
+	printf("read from %s, with TimeContinue = %lf, star_mass = %lf, back_mass = %lf,ghost_mass=%lf\n", f_rst, *TimeContinue, star_mass, back_mass, ghost_mass);
+
+		getline(fpdata,line);
+		getline(fpdata,line);
 	for(i = 0; i<100; i++) 
 	{
 		getline(fpdata,line);
+	  data = split(line,' ');
+	  n[i] = atof(data[1].c_str());
+	  v_d[i] = atof(data[2].c_str());
+    n_star[i] = atof(data[3].c_str());
 //		fscanf(fpdata, "%lf", n+i);
 //		fscanf(fpdata, "%lf", v_d+i);
 //		fscanf(fpdata, "%lf", n_star);
 	}
+		getline(fpdata,line);
+	  data = split(line,' ');
+	  *ff = atoi(data[0].c_str());
+		getline(fpdata,line);
+	  data = split(line,' ');
+	  *ff2 = atoi(data[0].c_str());
+//    cout << *ff << *ff2 << endl;
 //	fscanf(fpdata, "%d\n%d", ff, ff2);
+  fpdata.close();
 	return 0;
 }
 

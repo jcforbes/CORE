@@ -6,9 +6,10 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <unistd.h>
 #include "define.h"
 using namespace std;
 vector<string> &split(const string &s, char delim, vector<string> &elems);
