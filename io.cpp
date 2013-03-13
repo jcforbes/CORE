@@ -84,30 +84,30 @@ int readdata(double *mytime, double *TimeContinue, int *ff, int *ff2, char *f_rs
 	ifstream fpdata;
 	strcat(f_rst,"-cp.txt");
   	fpdata.open(f_rst);
-	getline(fpdata,line);
-	data = split(line,"=");
-	TimeContinue = atof(data[1]);
-	mytime[0] = TimeContinue;
-	getline(fpdata,line);
-	data = split(line,"=");
-	star_mass = atof(data[1]);
-	getline(fpdata,line);
-	data = split(line,"=");
-	back_mass = atof(data[1]);
-	getline(fpdata,line);
-	data = split(line,"=");
-	ghost_mass = atof(data[1]);
-	printf("read from %s, with TimeContinue = %lf, star_mass = %lf, back_mass = %lf,ghost_mass=%lf", f_rst, TimeContinue, &star_mass, &back_mass, &ghost_mass);
+  	fpdata.close();
+//	getline(fpdata,line);
+//	data = split(line,"=");
+//	TimeContinue = atof(data[1]);
+//	mytime[0] = TimeContinue;
+//	getline(fpdata,line);
+//	data = split(line,"=");
+//	star_mass = atof(data[1]);
+//	getline(fpdata,line);
+//	data = split(line,"=");
+//	back_mass = atof(data[1]);
+//	getline(fpdata,line);
+//	data = split(line,"=");
+//	ghost_mass = atof(data[1]);
+//	printf("read from %s, with TimeContinue = %lf, star_mass = %lf, back_mass = %lf,ghost_mass=%lf", f_rst, TimeContinue, &star_mass, &back_mass, &ghost_mass);
 	exit(0);
 	for(i = 0; i<100; i++) 
 	{
 		getline(fpdata,line);
-		fscanf(fpdata, "%lf", n+i);
-		fscanf(fpdata, "%lf", v_d+i);
-		fscanf(fpdata, "%lf", n_star);
+//		fscanf(fpdata, "%lf", n+i);
+//		fscanf(fpdata, "%lf", v_d+i);
+//		fscanf(fpdata, "%lf", n_star);
 	}
-	fscanf(fpdata, "%d\n%d", ff, ff2);
-	fclose(fpdata);
+//	fscanf(fpdata, "%d\n%d", ff, ff2);
 	return 0;
 }
 

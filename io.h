@@ -1,12 +1,15 @@
 #ifndef IO_H
 #define IO_H
-#include "define.h"
+#include <string.h>
+#include <string>
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <string>
 #include <vector>
-#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "define.h"
 using namespace std;
 vector<string> &split(const string &s, char delim, vector<string> &elems);
 vector<string> split(const string &s, char delim) ;

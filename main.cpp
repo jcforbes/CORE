@@ -1,12 +1,12 @@
 #ifndef MAIN_C
 #define MAIN_C
-#include"define.h"
 #include "coag.h"
 #include "io.h"
 #include "conden.h"
 #include "evap.h"
 #include "frag.h"
 #include "sf.h"
+#include"define.h"
 /*** with conduction, no artificial support ***/
 
 static int update();    

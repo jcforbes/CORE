@@ -10,8 +10,8 @@ int star_formation(int i)
 	double temp_star_mass, tempn_star;
 	delta_n[i] -= temp;
 //	if(i <= 50)
-	star_mass += temp * alpha * m[i];
-	temp_star_mass = m[i] * alpha;
+	star_mass += temp * alpha_sf * m[i];
+	temp_star_mass = m[i] * alpha_sf;
 	int j, k;
 	j=0;
 	k=j;
@@ -20,9 +20,9 @@ int star_formation(int i)
 		k=j;
 		j++;
 	}
-	tempn_star = temp * alpha * m[i]/m[k];
+	tempn_star = temp * alpha_sf * m[i]/m[k];
 	n_star[k] += tempn_star;
-  back_mass += temp * (1 - alpha) * m[i];          /*alpha is star formation efficiency*/
+  back_mass += temp * (1 - alpha_sf) * m[i];          /*alpha is star formation efficiency*/
 	return 1;
 };
 

@@ -4,7 +4,7 @@
 #define SF_rate 1.0/myr
 #define NUCLEAT 3.36e-2/kyr
 #define Tmass_core0solar 250.0
-#define alpha 1.0
+#define alpha_sf 1.0
 #define v_m -0.2
 #define Drho 15.
 #define beta_frag 5.0
