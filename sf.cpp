@@ -79,7 +79,8 @@ void sf_rate_gen(double *sf_rate, double *m)
 	}
 	for(i = 50; i < 100; i++)
 	{
-		sf_rate[i] = SF_rate/1.e6;
+		//sf_rate[i] = SF_rate/1.e6;
+		sf_rate[i] = SF_rate;
 		//sf_rate[i] = SF_rate * 1.5/ (1.0 + 0.5/(pow(m[i]/mBE, gamma)));
 //		sf_rate[i] = SF_rate * 1.5/ (1.0 + 0.5/(pow(m[i]/mBE, gamma))) * 100; change SF_rate instead of change here after 0714;
 	}		
