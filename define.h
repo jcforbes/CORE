@@ -52,7 +52,6 @@ double rhob;   /*** rhob is variable with evolution ***/
 double star_mass, back_mass, total_mass, total_mass_core, ghost_mass, totEk;
 //runtime:
 clock_t start, finish, start2, end2;
-char *name;
 #else
 extern double n[100], delta_n[100], rk[4][100], Ek[100], delta_Ek[100]; //rk[4][100] is for RK4 algorithm;
 extern double n_star[100];
@@ -65,7 +64,6 @@ extern double delta_n_cond[100], delta_n_coag[100], delta_n_frag[100], delta_n_e
 extern double rhob;   /*** rhob is variable with evolution ***/
 extern double star_mass, back_mass, total_mass, total_mass_core, ghost_mass, totEk;
 extern clock_t start, finish, start2, end2;
-extern char *name;
 #endif
 #endif
 

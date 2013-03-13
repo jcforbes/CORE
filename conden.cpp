@@ -1,11 +1,12 @@
 #include "conden.h"
 int conden_nucle()
 {
-	double m_nucl=0, const1, temp1;
+	//double m_nucl=0, const1, temp1;
+  double const1,temp1;
 	const1 = Pi * v0 * Timestep * rhob * kappa;
 	int i;
 	
-  double cn_ratio=0.8,ratio;
+  double ratio;
 //	for(i=Evap_lim; i<100; i++)
   ratio = back_mass/Msolar/Backmassinsolar;
 	for(i=0; i<100; i++)

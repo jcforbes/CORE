@@ -10,10 +10,11 @@
 /*** with conduction, no artificial support ***/
 
 static int update();    
-static int initialize(double *time, double *TimeContinue, int *ff, int *ff2);
+static int initialize(double *time, double *TimeContinue, int *ff, int *ff2,int rstflag, char *f_rst);
 int main(int argc, char *argv[])
 {
-  char f_txt[50];
+  char f_txt[50],f_rst[50];
+  int rstflag;
   if (argc<2){
     printf("USAGE: %s <data> [<><>]\n",argv[0]);
     exit(1);
@@ -23,6 +24,12 @@ int main(int argc, char *argv[])
     {
       case 2:
         strcpy(f_txt,argv[1]);
+        rstflag=0;
+        break;
+      case 3:
+        strcpy(f_txt,argv[1]);
+        strcpy(f_rst,argv[2]);
+        rstflag=1;
         break;
       default:
         printf("not implement yet\n");
@@ -39,7 +46,7 @@ int main(int argc, char *argv[])
 
     /***************initialize*************/
 	printf("initialize...\n");
-  initialize(&mytime, &TimeContinue, &ff, &ff2);
+  initialize(&mytime, &TimeContinue, &ff, &ff2,rstflag,f_rst);
 	time1 = (double)mytime/myr;
   if(TimeContinue==0)
 	{
@@ -57,10 +64,10 @@ int main(int argc, char *argv[])
 	printf("openfile...,ftxt=%s\n",f_txt);
 	/************open file****************/
 	char f_distr[100], f_mass[100], f_star[100], cp[100], f_Ek[100], filefrag[100], filecoag[100];
-	FILE *fp, *fp1, *fpfrag, *fpcoag;
+	FILE *fp, *fp1;
 	filename_gen(f_txt, f_distr, f_mass, f_star, f_Ek, cp, filefrag, filecoag);
 	fp = fopen(f_txt,"w");
-	print_paras(fp, back_mass, TimeContinue, total_mass_core);
+	print_paras(fp, back_mass, TimeContinue, total_mass_core,f_rst);
 	fp1=fopen(f_mass, "w");
 	fprintf(fp1, "#time(myr)\tstar mass\tcore mass\tghost mass\tchange in rhob\ttotal mass\ttotal Ek(10^40)\n");
 //  total_mass_core = 0;
@@ -182,12 +189,12 @@ double *dens_gen(double *m)
 	return dens;
 }
 
-int initialize(double *mytime, double *TimeContinue, int *ff, int*ff2)
+int initialize(double *mytime, double *TimeContinue, int *ff, int*ff2, int rstflag, char *f_rst)
 {
 	int i, j;
 	double a = 1.07897;//a=exp((log(100)-log(0.05))/2)=m[i+1]/m[i];
 	double A,temp=0;
-	char flag;
+//	char flag;
 	
 //constants initialize:
 	m[0] = 0.05 * Msolar;
@@ -228,10 +235,10 @@ int initialize(double *mytime, double *TimeContinue, int *ff, int*ff2)
 //    printf("Use the default initial settings? y/n:\n");
 //	char flag = 'n';
 //	flag = getchar();
-  flag = 'y';
-  if (flag != 'y')
+//  flag = 'y';
+  if (rstflag)
 	{
-		readdata(mytime, TimeContinue, ff, ff2);
+		readdata(mytime, TimeContinue, ff, ff2,f_rst);
 		n_star[0] = 0;/// just for follow 0513-11-cp.txt
 		total_mass_core = 0;
 		totEk = 0;
