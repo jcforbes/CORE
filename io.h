@@ -1,6 +1,15 @@
 #ifndef IO_H
 #define IO_H
 #include "define.h"
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <unistd.h>
+using namespace std;
+vector<string> &split(const string &s, char delim, vector<string> &elems);
+vector<string> split(const string &s, char delim) ;
 int filename_gen(char *f_txt, char*f_distr, char*f_mass, char*f_star, char*f_Ek, char*cp, char*filefrag, char*filecoag);
 
 int print_paras(FILE *fp, double back_mass, double TimeContinue, double total_mass_core, char *f_rst);

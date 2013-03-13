@@ -1,4 +1,17 @@
 #include "io.h" 
+vector<string> &split(const string &s, char delim, vector<string> &elems) {
+  stringstream ss(s);
+  string item;
+  while(getline(ss, item, delim)) {
+    elems.push_back(item);
+  }
+  return elems;
+}
+vector<string> split(const string &s, char delim) {
+  vector<string> elems;
+  return split(s, delim, elems);
+}
+
 int filename_gen(char *f_txt, char*f_distr, char*f_mass, char*f_star, char*f_Ek, char*cp, char*filefrag, char*filecoag)
 {
 	int i;
@@ -65,24 +78,32 @@ int readdata(double *mytime, double *TimeContinue, int *ff, int *ff2, char *f_rs
 {
 	int i;
 //	char y[25], z[25];
-	FILE *fpdata;
+//	FILE *fpdata;
+	string line;
+  	vector <string> data;
+	ifstream fpdata;
 	strcat(f_rst,"-cp.txt");
-  fpdata = fopen(f_rst, "r");
-	fscanf(fpdata, "%lf", TimeContinue);
-	mytime[0] = TimeContinue[0];
-	fscanf(fpdata, "%lf", &star_mass);
-	fscanf(fpdata, "%lf", &back_mass);
-	fscanf(fpdata, "%lf", &ghost_mass);
+  	fpdata.open(f_rst);
+	getline(fpdata,line);
+	data = split(line,"=");
+	TimeContinue = atof(data[1]);
+	mytime[0] = TimeContinue;
+	getline(fpdata,line);
+	data = split(line,"=");
+	star_mass = atof(data[1]);
+	getline(fpdata,line);
+	data = split(line,"=");
+	back_mass = atof(data[1]);
+	getline(fpdata,line);
+	data = split(line,"=");
+	ghost_mass = atof(data[1]);
+	printf("read from %s, with TimeContinue = %lf, star_mass = %lf, back_mass = %lf,ghost_mass=%lf", f_rst, TimeContinue, &star_mass, &back_mass, &ghost_mass);
+	exit(0);
 	for(i = 0; i<100; i++) 
 	{
+		getline(fpdata,line);
 		fscanf(fpdata, "%lf", n+i);
-	}
-	for(i = 0; i<100; i++)
-	{
 		fscanf(fpdata, "%lf", v_d+i);
-	}
-	for(i = 0; i<100; i++)
-	{
 		fscanf(fpdata, "%lf", n_star);
 	}
 	fscanf(fpdata, "%d\n%d", ff, ff2);
