@@ -147,12 +147,9 @@ set loadpath
 set fontpath 
 set fit noerrorvariables
 GNUTERM = "x11"
-set bmargin 3
-set rmargin 0.1
-#set terminal postscript eps enhanced color size 3.5,5
-set terminal postscript eps enhanced color size 4,3.2
+set terminal postscript eps enhanced color size 3.5,5
 #set output 'postevolution.eps'
-set output 'CMF.eps'
+set output 'poststar.eps'
 set size 0.7
 set format y '10^{%L}'
 set mytics 10
@@ -163,33 +160,30 @@ set xrange [0.09:40]
 set yrange [0.5:700]
 #set yrange [0.05:200]
 #setdata
-#set label "1Myr" at graph 0.2, graph 0.8 tc rgb '#888888'
-#set label "2Myr" at graph 0.2, graph 0.75 tc rgb '#666666'
-#set label "3Myr" at graph 0.2, graph 0.7 tc rgb '#444444'
-#set label "4Myr" at graph 0.2, graph 0.64 tc rgb '#222222'
-#set label "5Myr" at graph 0.2, graph 0.58 tc rgb '#000000'
-data = '../data/standard-distr_r.txt'
-#data = '../stcp-distr_r.txt'
+set label "1Myr" at graph 0.2, graph 0.8 tc rgb '#888888'
+set label "2Myr" at graph 0.2, graph 0.75 tc rgb '#666666'
+set label "3Myr" at graph 0.2, graph 0.7 tc rgb '#444444'
+set label "4Myr" at graph 0.2, graph 0.64 tc rgb '#222222'
+set label "5Myr" at graph 0.2, graph 0.58 tc rgb '#000000'
+#data = '../data/standard-distr_r.txt'
+data = '../stcp-star.txt'
 obs = '../data/R09_kde.txt'
 #bin(x,width)=width*floor(x/width)
 #binwidth = 0.3
 obshst = '../data/obshst'
 Kdist = '../data/Kroupa.txt'
-plot data u 1:($1*$12/$13) w l lt 1 lc rgb '#000000' title 'CMFH13,5Myr',\
+plot data u 1:($1*$2/$12) w l lt 2 lc 1 title 'initial condition',\
+data u 1:($1*$4/$12) w p pt 7 ps 0.5 lc rgb '#888888' notitle,\
+data u 1:($1*$4/$12) w l lt 1 lc rgb '#888888' notitle,\
+data u 1:($1*$6/$12) w p pt 7 ps 0.5 lc rgb '#666666' notitle,\
+data u 1:($1*$6/$12) w l lt 1 lc rgb '#666666' notitle,\
+data u 1:($1*$8/$12) w p pt 7 ps 0.5 lc rgb '#444444' notitle,\
+data u 1:($1*$8/$12) w l lt 1 lc rgb '#444444' notitle,\
+data u 1:($1*$10/$12) w p pt 7 ps 0.5 lc rgb '#222222' notitle,\
+data u 1:($1*$10/$12) w l lt 1 lc rgb '#222222' notitle,\
 obs u 1:($2*3.6) w l lt 1 lw 3 lc rgb 'grey70' title 'Rathborne2009',\
 Kdist u 1:2 w l lt 5 lw 3 lc 3 title 'IMF (shifted)'
-#data u 1:($1*$12/$13) w p pt 7 ps 0.5 lc rgb '#000000' notitle,\
 #obshst using 1:2:(sqrt($2)*$1) w yerrorbars lc rgb 'black'
-#data u 1:($1*$2/$13) w l lt 2 lc 1 title 'initial condition',\
-#data u 1:($1*$4/$13) w p pt 7 ps 0.5 lc rgb '#888888' notitle,\
-#data u 1:($1*$4/$13) w l lt 1 lc rgb '#888888' notitle,\
-#data u 1:($1*$6/$13) w p pt 7 ps 0.5 lc rgb '#666666' notitle,\
-#data u 1:($1*$6/$13) w l lt 1 lc rgb '#666666' notitle,\
-#data u 1:($1*$8/$13) w p pt 7 ps 0.5 lc rgb '#444444' notitle,\
-#data u 1:($1*$8/$13) w l lt 1 lc rgb '#444444' notitle,\
-#data u 1:($1*$10/$13) w p pt 7 ps 0.5 lc rgb '#222222' notitle,\
-#data u 1:($1*$10/$13) w l lt 1 lc rgb '#222222' notitle,\
-
 set output
 set terminal x11
 #plot data u 1:($1*$2/$13) w p pt 1 ps 0.5 lc 1 notitle,\
