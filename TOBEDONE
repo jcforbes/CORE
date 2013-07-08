@@ -1,3 +1,5 @@
 Tobedones till July 7th, 2013
 a) replace the galobal variables with class and structures 
 b) add in more explaination in subtle equations in the code 
+c) make sure the other starformation switches work
+d) should return 0 instead of 1 for all the int functions
