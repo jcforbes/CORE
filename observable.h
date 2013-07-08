@@ -1,7 +1,7 @@
 #ifndef OBSERBABLE_H
 #define OBSERBABLE_H
 #define vc 1e3
-#define SF_rate 1.0/myr
+#define SF_rate 0.03/myr
 #define NUCLEAT 3.36e-2/kyr
 #define Tmass_core0solar 250.0
 #define alpha_sf 1.0

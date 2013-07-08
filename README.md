@@ -12,6 +12,12 @@ Zhou,T., Huang, X. C. , Lin, D.~N.~C.,  et al. (2013) submitted to apjl
 
 Usage
 -----------------------
+runcore.py observable_example.txt to generate the default observable.h
+edit the observable.h to set up initial parameters
+read observable_example.txt for the definition of things 
+make 
+./core filenameyouwant
+
 
 Function Devision
 -----------------------

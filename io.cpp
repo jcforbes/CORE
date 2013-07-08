@@ -59,12 +59,13 @@ int filename_gen(char *f_txt, char*f_distr, char*f_mass, char*f_star, char*f_Ek,
 int print_paras(FILE *fp, double back_mass, double TimeContinue, double total_mass_core,char * f_rst)
 {
 	//float al = alpha, be = beta, q_be = q_beta, sf = SF_rate * myr, g1 = Gauss1, g2 = Gauss2, fif = fifa;
-	float BEmass = mBE, rb = Rb/pc, bm = (double)back_mass/Msolar, timestep = Timestep / yr, eva = Evap_rate*100*kyr,drho = Drho, rhoc1=rhob*Drho*1e16;
+  float BEmass = mBE, rb = Rb/pc, bm = (double)back_mass/Msolar, timestep = Timestep / yr, eva = Evap_rate*100*kyr,drho = Drho, rhoc1=rhob*Drho*1e16;
 	if(TimeContinue)
 	{
 		fprintf(fp,"this continues file %s\ninitial time is: %fmyr\n", f_rst, TimeContinue/myr);
 	}
 	fprintf(fp, "bin: %d\nalpha: %f\nbeta: %f\nSF_rate: %f /myr\nGaussian sigma1: %f\nGaussian sigema2: %f\nfilling factor: %f\n",bin, alpha_sf, beta, SF_rate*myr, Gauss1, Gauss2, (double)total_mass_core/back_mass/drho);
+	//printf("BEmass=%f\n",BEmass/Msolar);
 	fprintf(fp, "Rb: %f pc\nBackground mass: %f Msolar\ntimestep: %f yr\nevaporation rate: %f%% per kyr\nrhoc: %fe-16\nDensity contrast: %f\n", rb, bm, timestep, eva, rhoc1, drho);
 	fprintf(fp, "v_m index: %f\n", v_m);
 	fprintf(fp, "Bonnor-Ebert mass: %f Msolar\n", BEmass/Msolar);

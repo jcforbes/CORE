@@ -71,7 +71,11 @@ int main(int argc, char *argv[])
 	FILE *fp, *fp1;
   /*get all the output filenames*/
 	filename_gen(f_txt, f_distr, f_mass, f_star, f_Ek, cp, filefrag, filecoag);
-	fp = fopen(f_txt,"w"); 
+  fp = fopen(f_txt,"w");
+  if(!fp){
+    printf("fail to open file with name %s\n",f_txt);
+    exit(0);
+  }
   /*f_txt: file to save initial condition.
    *f_distr: file to output distributions.
    *f_mass: file to output masses in each component at different time step.
@@ -80,6 +84,7 @@ int main(int argc, char *argv[])
    *cp: 
    *filefrag: file to output fragment contribution in each bin.
    *filecoag: file to output coagulation contribution in each bin. */
+  fprintf(fp,"test\n");
 	print_paras(fp, back_mass, TimeContinue, total_mass_core,f_rst);
 	fp1=fopen(f_mass, "w");
 	fprintf(fp1, "#time(myr)\tstar mass\tcore mass\tghost mass\tchange in rhob\ttotal mass\ttotal Ek(10^40)\n");
