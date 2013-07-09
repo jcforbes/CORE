@@ -5,6 +5,18 @@ import sys
 import numpy as np
 import scipy as sp
 import math
+'''
+autometic running the program for a bunch of parameters.
+Usage: python runcore.py filename
+generate obervable.h according to the default settings in 
+observable_example.txt
+python runcore.py
+autometic run a serials of parameters according to the set up in main.
+the filesnames will be based on the parameter to set and the excute time.
+Default changes vc;
+need to be more user friendly.
+'''
+
 def gen_observable(infile,newpara={}):
     fin = open(infile,mode='r')
     key = []
