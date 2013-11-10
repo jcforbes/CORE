@@ -38,6 +38,15 @@ def Observed():
         print logmass[i], binmass[i],binmass[i]/(logmass[i]-logmass[i-1])
     return
 
+def Chabrier(m):
+    dist = np.zeros(len(m))
+    #dis[m<1] = 0.158*(1./m[m<1])*np.exp(-(np.log(m<1)-np.log(0.08))**2./(2*0.69**2.))
+    dist[m<1] = 0.158*np.exp(-(np.log(m[m<1])-np.log(0.079))**2./(2*0.69**2.))
+    m0 = 1.
+    cont= 0.158*(1./m0)*np.exp(-(np.log(m0)-np.log(0.08))**2./(2*0.69**2.))
+
+    dist[m>=1] = cont*m[m>=1]**(-1.3) 
+    return dist
 def Kroupa(m):
     dist = np.zeros(len(m))
     dist[m<=0.5] = m[m<=0.5]**-0.3*10/0.5**-0.3
@@ -47,18 +56,20 @@ def Kroupa(m):
     return dist
 def main():
     m = np.logspace(-2,math.log10(40),100)
-    dist = Kroupa(m)
+    dist1 = Kroupa(m)
+    dist2 = Chabrier(m)
     fig = plt.figure(figsize=(8,6))
     ax = fig.add_subplot(111)
-    ax.loglog(m,dist)
+    ax.loglog(m,dist1)
+    ax.loglog(m,dist2)
     plt.show()
-    outfile = 'data/Kroupa.txt'
-    fout = open(outfile,mode='w')
-    for i in range(100):
-        fout.write("%f %f\n" % (3*m[i],dist[i]))
-    fout.close()
+    #outfile = 'data/Kroupa.txt'
+    #fout = open(outfile,mode='w')
+    #for i in range(100):
+    #    fout.write("%f %f\n" % (3*m[i],dist[i]))
+    #fout.close()
     return
 
 if __name__=='__main__':
-    Observed()
-   # main()
+    #Observed()
+    main()
